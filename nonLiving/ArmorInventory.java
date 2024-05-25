@@ -6,18 +6,18 @@ import nonLiving.Item.ItemEnum;
 
 public class ArmorInventory {
 
-	private Item Helmet;
-	private Item Chest;
-	private Item Greave;
-	private Item Boots;
-	private Item Shield;
-	private Item BackPack;
+	private SlotInventory Helmet;
+	private SlotInventory Chest;
+	private SlotInventory Greave;
+	private SlotInventory Boots;
+	private SlotInventory Shield;
+	private SlotInventory BackPack;
 	
 	
 	/*
 	 * Constructor
 	 */
-	public ArmorInventory(Item Helmet,Item Chest, Item Greave, Item Boots, Item Shield) {
+	public ArmorInventory(SlotInventory Helmet,SlotInventory Chest, SlotInventory Greave, SlotInventory Boots, SlotInventory Shield) {
 		setHelmet(Helmet);
 		setChest(Chest);
 		setGreave(Greave);
@@ -25,67 +25,68 @@ public class ArmorInventory {
 		setShield(Shield);
 	}
 	public ArmorInventory() {
-		Item NULL = new Item();
+		SlotInventory NULL = new SlotInventory();
 		setHelmet(NULL);
 		setChest(NULL);
 		setGreave(NULL);
 		setBoots(NULL);
 		setShield(NULL);
+		setBackPack(NULL);
 	}
 	
 	/*
 	 * getter
 	 */
 	
-	public Item getHelmet() {
+	public SlotInventory getHelmet() {
 		return Helmet;
 	}
-	public Item getChest() {
+	public SlotInventory getChest() {
 		return Chest;
 	}
-	public Item getGreave() {
+	public SlotInventory getGreave() {
 		return Greave;
 	}
-	public Item getBoots() {
+	public SlotInventory getBoots() {
 		return Boots;
 	}
-	public Item getShield() {
+	public SlotInventory getShield() {
 		return Shield;
 	}
-	public Item getBackPack() {
+	public SlotInventory getBackPack() {
 		return BackPack;
 	}
 	/*
 	 * setter
 	 */
 	
-	public void setHelmet(Item helmet) {
-		if (helmet.getItemEnum()==ItemEnum.EMPTY || helmet.getItemEnum().getType()==ItemType.HELMET) {
+	public void setHelmet(SlotInventory helmet) {
+		if (helmet.getItem().getItemEnum()==ItemEnum.EMPTY || helmet.getItem().getItemEnum().getType()==ItemType.HELMET) {
 			Helmet = helmet;
 		}
 	}
-	public void setChest(Item chest) {
-		if (chest.getItemEnum()==ItemEnum.EMPTY ||chest.getItemEnum().getType()==ItemType.CHEST) {
+	public void setChest(SlotInventory chest) {
+		if (chest.getItem().getItemEnum()==ItemEnum.EMPTY ||chest.getItem().getItemEnum().getType()==ItemType.CHEST) {
 			Chest = chest;
 		}
 	}
-	public void setGreave(Item greave) {
-		if (greave.getItemEnum()==ItemEnum.EMPTY ||greave.getItemEnum().getType()==ItemType.GREAVE) {
+	public void setGreave(SlotInventory greave) {
+		if (greave.getItem().getItemEnum()==ItemEnum.EMPTY ||greave.getItem().getItemEnum().getType()==ItemType.GREAVE) {
 			Greave = greave;
 		}
 	}
-	public void setBoots(Item boots) {
-		if (boots.getItemEnum()==ItemEnum.EMPTY ||boots.getItemEnum().getType()==ItemType.BOOTS) {
+	public void setBoots(SlotInventory boots) {
+		if (boots.getItem().getItemEnum()==ItemEnum.EMPTY ||boots.getItem().getItemEnum().getType()==ItemType.BOOTS) {
 			Boots = boots;
 		}
 	}
-	public void setShield(Item shield) {
-		if (shield.getItemEnum()==ItemEnum.EMPTY ||shield.getItemEnum().getType()==ItemType.SHIELD) {
+	public void setShield(SlotInventory shield) {
+		if (shield.getItem().getItemEnum()==ItemEnum.EMPTY ||shield.getItem().getItemEnum().getType()==ItemType.SHIELD) {
 			Shield = shield;
 		}
 	}
-	public void setBackPack(Item bp) {
-		if (bp.getItemEnum()==ItemEnum.EMPTY ||bp.getItemEnum().getType()==ItemType.BACKPACK) {
+	public void setBackPack(SlotInventory bp) {
+		if (bp.getItem().getItemEnum()==ItemEnum.EMPTY ||bp.getItem().getItemEnum().getType()==ItemType.BACKPACK) {
 			BackPack = bp;
 		}
 	}
@@ -94,54 +95,54 @@ public class ArmorInventory {
 	 */
 	
 	public Item removeHelmet() {
-		Item ret = getHelmet();
-		setHelmet(new Item());
+		Item ret = getHelmet().getItem();
+		setHelmet(new SlotInventory());
 		return ret;
 	}
 	public Item removeChest() {
-		Item ret = getChest();
-		setChest(new Item());
+		Item ret = getChest().getItem();
+		setChest(new SlotInventory());
 		return ret;
 	}
 	public Item removeGreave() {
-		Item ret = getGreave();
-		setGreave(new Item());
+		Item ret = getGreave().getItem();
+		setGreave(new SlotInventory());
 		return ret;
 	}
 	public Item removeBoots() {
-		Item ret = getBoots();
-		setBoots(new Item());
+		Item ret = getBoots().getItem();
+		setBoots(new SlotInventory());
 		return ret;
 	}
 	public Item removeShield() {
-		Item ret = getShield();
-		setShield(new Item());
+		Item ret = getShield().getItem();
+		setShield(new SlotInventory());
 		return ret;
 	}
 	public Item removeBackPack() {
-		Item ret = getBackPack();
-		setBackPack(new Item());
+		Item ret = getBackPack().getItem();
+		setBackPack(new SlotInventory());
 		return ret;
 	}
 	
 	
 	public void putHelmet(Item Helmet) {
-		setHelmet(Helmet);
+		setHelmet( new SlotInventory(Helmet,1,false));
 	}
 	public void putChest(Item Chest) {
-		setChest(Chest);
+		setChest(new SlotInventory(Chest,1,false));
 	}
 	public void putGreave(Item Greave) {
-		setGreave(Helmet);
+		setGreave(new SlotInventory(Greave,1,false));
 	}
 	public void putBoots(Item Boots) {
-		setBoots(Helmet);
+		setBoots(new SlotInventory(Boots,1,false));
 	}
 	public void putShield(Item Shield) {
-		setShield(Helmet);
+		setShield(new SlotInventory(Shield,1,false));
 	}
 	public void putBackPack(Item bp) {
-		setBackPack(bp);
+		setBackPack(new SlotInventory(bp,1,false));
 	}
 	
 	
@@ -168,7 +169,7 @@ public class ArmorInventory {
 	}
 	public Item replaceShield(Item Shield) {
 		Item ret = removeShield();
-		putShield(Chest);
+		putShield(Shield);
 		return ret;
 	}
 	public Item replaceBackPack(Item bp) {
@@ -181,36 +182,36 @@ public class ArmorInventory {
 	@Override
 	public String toString() {
 		String ret = "\n\tArmor:";
-		if (getHelmet()==null || getHelmet().getItemEnum()!=ItemEnum.EMPTY) {
+		if (getHelmet()==null || getHelmet().getItem().getItemEnum()!=ItemEnum.EMPTY) {
 			ret += "\nHelmet : "+getHelmet().toString();
 		}else {
 			ret += "\nHelmet : None";
 		}
 		
-		if (getChest()==null || getChest().getItemEnum()!=ItemEnum.EMPTY) {
+		if (getChest()==null || getChest().getItem().getItemEnum()!=ItemEnum.EMPTY) {
 			ret += "\nChest : "+getChest().toString();
 		}else {
 			ret += "\nChest : None";
 		}
 		
-		if (getGreave()==null || getGreave().getItemEnum()!=ItemEnum.EMPTY) {
+		if (getGreave()==null || getGreave().getItem().getItemEnum()!=ItemEnum.EMPTY) {
 			ret += "\nGreave : "+getGreave().toString();
 		}else {
 			ret += "\nGreave : None";
 		}
 		
-		if (getBoots()==null || getBoots().getItemEnum()!=ItemEnum.EMPTY) {
+		if (getBoots()==null || getBoots().getItem().getItemEnum()!=ItemEnum.EMPTY) {
 			ret += "\nBoots : "+getBoots().toString();
 		}else {
 			ret += "\nBoots : None";
 		}
 		
-		if (getShield()==null || getShield().getItemEnum()!=ItemEnum.EMPTY) {
+		if (getShield()==null || getShield().getItem().getItemEnum()!=ItemEnum.EMPTY) {
 			ret += "\nShield : "+getShield().toString();
 		}else {
 			ret += "\nShield : None";
 		}
-		if (getBackPack()==null || getBackPack().getItemEnum()!=ItemEnum.EMPTY) {
+		if (getBackPack()==null || getBackPack().getItem().getItemEnum()!=ItemEnum.EMPTY) {
 			ret += "\nBackPack : "+getBackPack().toString();
 		}else {
 			ret += "\nBackPack : None";

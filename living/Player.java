@@ -3,21 +3,27 @@ package living;
 import java.util.ArrayList;
 
 import elmt_Base.Direction;
+import elmt_Base.Point2D;
+import nonLiving.EnumEntity;
 
 public class Player extends LivingEntity{
 	private int deathCount;
 	private ArrayList<Quest> ListQuest;
+	private static final String texture = "player";
+	public Point2D oldPosition;
 	
 	/*
 	 * constructor
 	 */
-	public Player(double x, double y, double weight,Direction Facing,int level,int xp,int xpmax,double life, double atk,double def,String name) {
-		super(x, y, weight, Facing,level,xp,xpmax,life,atk,def,name);
+	public Player(int x, int y, double weight,Direction Facing,int level,int xp,int xpmax,double life, double atk,double def,String name) {
+		super(x, y, weight, Facing,EnumEntity.None,level,xp,xpmax,life,atk,def,name);
+		setOldPosition(new Point2D(0,0));
 		// TODO Auto-generated constructor stub
 	}
 
-	public Player(double x, double y, double weight,Direction Facing,double life, double atk,double def,String name) { // constructor light
-		super(x,y,weight,Facing,life,atk,def,name);
+	public Player(int x, int y, double weight,Direction Facing,double life, double atk,double def,String name) { // constructor light
+		super(x,y,weight,Facing,EnumEntity.None,life,atk,def,name);
+		setOldPosition(new Point2D(0,0));
 	}
 	
 	
@@ -35,6 +41,12 @@ public class Player extends LivingEntity{
 	public Quest getQuest(int index) {
 		return ListQuest.get(index);
 	}
+	public String getTexture() {
+		return texture;
+	}
+	public Point2D getOldPosition() {
+		return oldPosition;
+	}
 	
 	/*
 	 * setter
@@ -47,6 +59,10 @@ public class Player extends LivingEntity{
 	}
 	public void setQuest(int index, Quest quest) {
 		ListQuest.set(index, quest);
+	}
+	public void setOldPosition(Point2D p) {
+		Point2D p2 = new Point2D(p.getAbscisse(),p.getOrdonnee());
+		oldPosition =p2;
 	}
 	
 	
@@ -77,7 +93,15 @@ public class Player extends LivingEntity{
 		}
 	}
 	
-	public void fight(Monster target) {
+	
+	/*
+	 * @return the round where the fight 
+	 * @return -/+ in case of defeat/victory
+	 * 
+	 * example of return : -2 defeat on round 2
+	 * 					    4 victory on round 4
+	 */
+	public double fight(Monster target) {
 		int round = 0;
 		if (this.getLevel()< target.getLevel()) {
 			System.out.println("\nTour n° : "+round+"\n");
@@ -90,13 +114,14 @@ public class Player extends LivingEntity{
 			this.hit(target);
 			if (target.getLife()<=0) {
 				System.out.println("\nPlayer won on tour n° : "+round+"\n");
-				return ;
+				return round;
 			}
 			round ++;
 			System.out.println("\nTour n° : "+round+"\n");
 			target.hit(this);
 		}
 		System.out.println("\nMonster Won on tour : "+round);
+		return -round;
 	}
 	
 	
@@ -112,4 +137,20 @@ public class Player extends LivingEntity{
 		}
 		
 	}
+	public void move(int x,int y) {
+		//verify possible TODO
+		setOldPosition(getPosition());
+		super.move(x, y);
+	}
+	
+	public String sprite() {
+		return "images/player/"+getTexture()+"_"+getFacing().name().toLowerCase()+".png";
+	}
+	
+	
+	
+	
+	
+	
+	
 }

@@ -2,20 +2,23 @@ package living;
 
 import elmt_Base.Direction;
 import elmt_Base.Point2D;
+import nonLiving.EnumEntity;
 
 public class Entity {
 	private Point2D position ;
 	private double weight;
 	private Direction facing;
+	private EnumEntity type;
 
 
 	/*
 	 * Constructor
 	 */
-	public Entity(double x,double y, double w,Direction f) {
+	public Entity(int x,int y, double w,Direction f,EnumEntity e) {
 		setPosition(x,y);
 		setWeight(w);
 		setFacing(f);
+		setType(e);
 	}
 	
 	/*
@@ -32,12 +35,14 @@ public class Entity {
 	public Direction getFacing() {
 		return facing;
 	}
-	
+	public EnumEntity getType() {
+		return type;
+	}
 	
 	/*
 	 * setter
 	 */
-	public void setPosition(double x,double y) {
+	public void setPosition(int x,int y) {
 		position= new Point2D(x,y);
 	}
 	
@@ -49,10 +54,14 @@ public class Entity {
 		facing = f;
 	}
 	
+	public void setType(EnumEntity t) {
+		type = t;
+	}
 	/*
 	 * Methods
 	 */
-	public void move(double deltaX, double deltaY) {
+	public void move(int deltaX, int deltaY) {
+		
 		getPosition().setAbscisse(getPosition().getAbscisse()+deltaX);
 		getPosition().setOrdonnee(getPosition().getOrdonnee()+deltaY);
 	}

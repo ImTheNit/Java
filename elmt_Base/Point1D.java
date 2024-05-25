@@ -1,26 +1,26 @@
 package elmt_Base;
 
 public class Point1D {
-	private double abscisse ;
+	private int abscisse ;
 	
 	/*
 	 * Constructor
 	 */
-	public Point1D(double a) {
+	public Point1D(int a) {
 		this.setAbscisse(a);
 	}
 	
 	/*
 	 * getter
 	 */
-	public double getAbscisse() {
+	public int getAbscisse() {
 		return this.abscisse;
 		
 	}
 	/*
 	 * setter
 	 */
-	public void setAbscisse(double a) {
+	public void setAbscisse(int a) {
 		this.abscisse=a;
 	}
 	

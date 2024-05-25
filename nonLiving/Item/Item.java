@@ -26,6 +26,9 @@ public class Item  {
 	public Item() { // constructor of EMPTY element
 		this(0,"empty",ItemEnum.EMPTY,1,1);
 	}
+	public Item (ItemEnum i) {
+		this(0,"none",i,1,1);
+	}
 
 	
 	/*

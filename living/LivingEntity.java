@@ -7,6 +7,7 @@ import nonLiving.Item.Item;
 import nonLiving.Item.ItemType;
 
 
+
 public class LivingEntity extends Entity{
 
 	private int level;
@@ -27,8 +28,8 @@ public class LivingEntity extends Entity{
 	 */
 	
 	
-	public LivingEntity(double x, double y, double weight,Direction Facing,int lev,int XP, int XPMax,double life,double atk,double def,String name) {
-		super(x, y, weight,Facing);
+	public LivingEntity(int x, int y, double weight,Direction Facing,EnumEntity e,int lev,int XP, int XPMax,double life,double atk,double def,String name) {
+		super(x, y, weight,Facing,e);
 		setLevel(lev);
 		setXp(XP);
 		setXpMax(XPMax);
@@ -44,8 +45,8 @@ public class LivingEntity extends Entity{
 		setInventory(I);
 	}
 	// Ajouter constructeur pour cas où moins de paramètres
-	public LivingEntity(double x, double y, double weight,Direction Facing,double life,double atk,double def,String name) {  // constructor light
-		this(x,y,weight,Facing,1,0,100,life,atk,def,name); //appel du constructeur
+	public LivingEntity(int x, int y, double weight,Direction Facing,EnumEntity e,double life,double atk,double def,String name) {  // constructor light
+		this(x,y,weight,Facing,e,1,0,100,life,atk,def,name); //appel du constructeur
 	}
 
 	/*
@@ -271,26 +272,24 @@ public class LivingEntity extends Entity{
 	
 	
 	
-	public void pickItem(DroppedItem ditem) { //to purchase
+	public boolean pickItem(DroppedItem ditem) { //to purchase
 		if (getInventory().getNextEmpty() > getInventory().getSize()) { // full
 			// check no not full slot
 			if(getInventory().nextAvailable(ditem.getItem())==getInventory().getNextEmpty()) { // the next available slot is already the nextEmpty slot
 				System.out.println("\n\nInventaire plein, impossible de ramasser "+ditem.getItem().getName()+"("+ditem.getQuantity()+")");	
-				return;
+				return false;
 			}
 			else { //slot not full find
 				 getInventory().add(ditem.getItem(), getInventory().nextAvailable(ditem.getItem()),ditem.getQuantity());
-				 System.out.println("test2");
-				 return;
+
+				 return true;
 			}
 			
 		}else { // No full
 			getInventory().add(ditem.getItem(),getInventory().getNextEmpty(), ditem.getQuantity());
-			//System.out.println("test3");
-			//System.out.println("test"+getInventory().getNextEmpty());
-			//System.out.println(getInventory().toString());
+
 			
-			return;
+			return true;
 		}
 	}
 	public DroppedItem dropItem(int index,int quantity) throws CloneNotSupportedException {
@@ -329,6 +328,10 @@ public class LivingEntity extends Entity{
 		return new SlotInventory(i,1,true);
 	}
 	
+	public String sprite() {
+		return "";
+	}
+
 	
 	@Override
 	public String toString() {

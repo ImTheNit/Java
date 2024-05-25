@@ -2,25 +2,25 @@ package elmt_Base;
 
 public class Point2D extends Point1D {
 
-	private double ordonnee;
+	private int ordonnee;
 	
 	/*
 	 * Constructor
 	 */
-	public Point2D(double a, double b) {
+	public Point2D(int a, int b) {
 		super(a);
 		this.setOrdonnee(b);
 	}
 	/*
 	 * getter
 	 */
-	public double getOrdonnee() {
+	public int getOrdonnee() {
 		return this.ordonnee;
 	}
 	/*
 	 * setter
 	 */
-	public void setOrdonnee(double a) {
+	public void setOrdonnee(int a) {
 		this.ordonnee=a;
 	}
 	

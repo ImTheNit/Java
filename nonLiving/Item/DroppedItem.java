@@ -1,26 +1,36 @@
 package nonLiving.Item;
 import elmt_Base.*;
-import nonLiving.NonLivingEntity;
+import javafx.scene.layout.StackPane;
+import nonLiving.*;
+
+
 
 
 public class DroppedItem extends NonLivingEntity {
 
 	private int quantity;
 	private Item item;
+	private StackPane sPane;
 	
 	/*
 	 * constructor
 	 */
-	public DroppedItem(double x, double y, double z,Direction Facing,Item item,int quantity) {
-		super(x, y, z,Facing);
+	public DroppedItem(int x, int y, double z,Direction Facing,Item item,int quantity) {
+		super(x, y, z,Facing,EnumEntity.None);
 		setQuantity(quantity);
 		setItem(item);
 	}
 	public DroppedItem(Item item, int quantity) {
-		super(0,0,0,Direction.Left);
+		super(0,0,0,Direction.Left,EnumEntity.None);
 		setQuantity(quantity);
 		setItem(item);
 	}
+	public DroppedItem() {
+		super(0,0,0,Direction.Left,EnumEntity.Tree1Day);
+		setItem(new Item(ItemEnum.NONE));
+		setQuantity(1);
+	}
+	
 
 	/*
 	 * getters
@@ -33,7 +43,9 @@ public class DroppedItem extends NonLivingEntity {
 	public Item getItem() {
 		return item;
 	}
-	
+	public StackPane getStackPane() {
+		return sPane;
+	}
 	/*
 	 * setters
 	 */
@@ -44,7 +56,9 @@ public class DroppedItem extends NonLivingEntity {
 	public void setItem(Item i) {
 		item = i;
 	}
-	
+	public void setStackPane(StackPane s) {
+		sPane = s;
+	}
 	
 	
 	/*

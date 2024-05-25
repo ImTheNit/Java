@@ -4,23 +4,26 @@ package living;
 import java.lang.*;
 import java.util.*;
 import elmt_Base.Direction;
+import living.Sprites.*;
+import nonLiving.EnumEntity;
+
 
 public class NPC extends LivingEntity{//Non Player Character
 	private Quest [] quest;
-	
+	private NpcType typeNPC;
 
 	/*
 	 * constructor
 	 */
-	public NPC(double x, double y, double weight,Direction Facing,int level,int xp,int xpmax,double life, double atk,double def,String name) {
-		super(x, y, weight, Facing,level,xp,xpmax,life,atk,def,name);
+	public NPC(int x, int y, double weight,Direction Facing,int level,int xp,int xpmax,double life, double atk,double def,String name,NpcType type) {
+		super(x, y, weight, Facing,EnumEntity.None,level,xp,xpmax,life,atk,def,name);
 		// TODO Auto-generated constructor stub
 	}
 
 	
 
-	public NPC(double x, double y, double weight,Direction Facing,double life, double atk,double def,String name) {  // constructor light
-		super(x,y,weight,Facing,life,atk,def,name);
+	public NPC(int x, int y, double weight,Direction Facing,double life, double atk,double def,String name,NpcType type) {  // constructor light
+		super(x,y,weight,Facing,EnumEntity.None,life,atk,def,name);
 	}
 	
 	
@@ -38,6 +41,9 @@ public class NPC extends LivingEntity{//Non Player Character
 		}
 		return null;
 	}
+	public NpcType getTypeNPC() {
+		return typeNPC;
+	}
 	
 	
 	
@@ -48,6 +54,9 @@ public class NPC extends LivingEntity{//Non Player Character
 		quest = quests;
 	}
 	
+	public void setTypeNPC(NpcType type) {
+		this.typeNPC=type;
+	}
 	
 	
 	
@@ -89,6 +98,10 @@ public class NPC extends LivingEntity{//Non Player Character
 		setQuest(ret);
 	}
 	
+	
+	public String Sprite() {
+		return getTypeNPC().getTexture();
+	}
 	
 	
 	

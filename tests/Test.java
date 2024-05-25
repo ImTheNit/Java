@@ -2,6 +2,8 @@ package tests;
 
 import elmt_Base.*;
 import living.*;
+import living.Sprites.MonsterType;
+import living.Sprites.NpcType;
 import nonLiving.*;
 import nonLiving.Item.*;
 
@@ -150,7 +152,7 @@ public class Test {
 		
 		
 		System.out.println("//Monster//\n");
-		Monster monster = new Monster(0, 0, 1, Direction.Down, 100, 10, 10, "Monster1");
+		Monster monster = new Monster(0, 0, 1, Direction.Down, 100, 10, 10, "Monster1",MonsterType.ZOMBIE);
 		System.out.println(monster.toString());
 		
 		
@@ -158,9 +160,37 @@ public class Test {
 		joueur.fight(monster);
 		
 		System.out.println("//FIN DU FIGHT//\n\n");
-		NPC PNJ = new NPC(0, 0, 1, Direction.Down, 100, 10, 10, "PNJ1");
+		NPC PNJ = new NPC(0, 0, 1, Direction.Down, 100, 10, 10, "PNJ1",NpcType.NATHAN);
 		System.out.println("//PNJ//\n");
 		System.out.println(PNJ.toString());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

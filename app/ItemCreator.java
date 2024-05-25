@@ -3,6 +3,7 @@ package app;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 
 import elmt_Base.Direction;
 import nonLiving.*;
@@ -102,8 +103,11 @@ public class ItemCreator {
 	
 	
 	public void loadItem(String FileName) throws Exception{
-		FileReader file = new FileReader(FileName);
-		BufferedReader Br = new BufferedReader(file);
+		//FileReader file = new FileReader(FileName);
+		//InputStreamReader file = new InputStreamReader(getClass().getResourceAsStream(FileName));
+		System.out.println("../"+FileName);
+		System.out.println("test"+getClass().getResourceAsStream("../"+FileName));
+		BufferedReader Br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("../"+FileName)));
 		String Line;
 		
 		int i = 0;
@@ -161,11 +165,11 @@ public class ItemCreator {
 					//System.out.println("EXAMPLE"+getItem(i,j).equals("Tree1Day"));
 					//System.out.println("EXAMPLE"+getItem(i,j));
 					if (getItem(i,j).equals("Tree1Day")) {
-						System.out.println("images/background/entities/"+getItem(i, j)+".png");
-						image= new Image("images/background/entities/"+getItem(i, j)+".png");
+						System.out.println("../images/background/entities/"+getItem(i, j)+".png");
+						image= new Image(getClass().getResourceAsStream("../images/background/entities/"+getItem(i, j)+".png"));
 					}else {
-						System.out.println("images/item/"+getTabItem(i,j).getItem().getItemEnum().getTexture());
-						image= new Image("images/item/"+getTabItem(i,j).getItem().getItemEnum().getTexture());
+						System.out.println("../images/item/"+getTabItem(i,j).getItem().getItemEnum().getTexture());
+						image= new Image(getClass().getResourceAsStream("../images/item/"+getTabItem(i,j).getItem().getItemEnum().getTexture()));
 						getTabItem(i,j).setStackPane(sp);
 					}
 					

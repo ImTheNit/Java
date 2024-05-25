@@ -23,9 +23,9 @@ public class FightDisplay {
 		Image image;
 		
 		if (res<0) {
-			image = new Image("images/fight/defeat.png");
+			image = new Image(getClass().getResourceAsStream("../images/fight/defeat.png"));
 		}else {
-			image = new Image("images/fight/victory.png");
+			image = new Image(getClass().getResourceAsStream("../images/fight/victory.png"));
 		}
 		
 		ImageView pic = new ImageView();
@@ -45,7 +45,7 @@ public class FightDisplay {
 		if( pic==null) {
 			pic = new ImageView();
 		}
-		Image image = new Image("images/fight/defeat.png");
+		Image image = new Image(getClass().getResourceAsStream("../images/fight/defeat.png"));
 		pic.setImage(image);
 		pic.setOpacity(0);
 		

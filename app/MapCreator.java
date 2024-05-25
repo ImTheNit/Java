@@ -12,7 +12,7 @@ public class MapCreator {
 	// Load map from txt file
 	
 	private String[][] map;
-	private final String refMap = "images/background/map/";
+	private final String refMap = "../images/background/map/";
 	
 	
 	/*
@@ -71,8 +71,11 @@ public class MapCreator {
 	
 	
 	public void loadMap(String FileName) throws Exception{
-		FileReader file = new FileReader(FileName);
-		BufferedReader Br = new BufferedReader(file);
+		//FileReader file = new FileReader(FileName);
+		//InputStreamReader file = new InputStreamReader(getClass().getResourceAsStream(FileName));
+		System.out.println("../"+FileName);
+		System.out.println("test"+getClass().getResourceAsStream("../"+FileName));
+		BufferedReader Br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("../"+FileName)));
 		String Line;
 		
 		int i = 0;
@@ -101,7 +104,8 @@ public class MapCreator {
 				StackPane sp = new StackPane();
 				//System.out.println("contenu "+i+";"+j+" : "+map.getMap(i, j));
 				
-				Image image= new Image(getRefMap()+getMap(i, j)+".png");
+				
+				Image image= new Image(getClass().getResourceAsStream(getRefMap()+getMap(i, j)+".png"));
 				ImageView pic = new ImageView();
 				
 				pic.setFitWidth(50);

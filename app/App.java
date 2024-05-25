@@ -56,12 +56,12 @@ public class App extends Application{
 	public void start(Stage stage) throws Exception {
 		
 		
-		MapCreator map = new MapCreator("src/resources/background.txt",getDimX(),getDimY());
-		EntityCreator entities = new EntityCreator("src/resources/entity.txt",getDimX(),getDimY());
-		ItemCreator items = new ItemCreator("src/resources/items.txt",getDimX(),getDimY());
+		MapCreator map = new MapCreator("resources/background.txt",getDimX(),getDimY());
+		EntityCreator entities = new EntityCreator("resources/entity.txt",getDimX(),getDimY());
+		ItemCreator items = new ItemCreator("resources/items.txt",getDimX(),getDimY());
 		FightDisplay fD = new FightDisplay();
 		InventoryView InView = new InventoryView();
-		
+		//System.out.println("TEST");
 		/*
 		 * debug use
 		 */
@@ -76,24 +76,27 @@ public class App extends Application{
 		*/
 		Player joueur = new Player(10, 10, 1, Direction.Up, 100, 10, 10, "Joueur1");
 		StackPane superRoot = new StackPane();
+
 		GridPane coucheMap = map.initMap();
+		
 		GridPane coucheEntite = entities.initEntity();
+		
 		GridPane coucheItem = items.initItem();
 		ImageView imv = new ImageView();
 		VBox fightDisplay =fD.initDisplay(imv);
-		
+		//System.out.println("TEST3");
 		VBox coucheInventory = InView.initInventoryView(joueur.getInventory());
 		coucheInventory.setOpacity(0);		
 		
 		
-		
+		//System.out.println("TEST4");
 		
 		setPlayerView(joueur);
 		//joueur.getInventory().decreaseSize(5);
-		System.out.println("test :"+joueur.getInventory().getSize());
+		System.out.println("test2 :"+joueur.getInventory().getSize());
 		addComponent(coucheMap,map,10,10,loadImage(joueur));
 		
-		
+		//System.out.println("TEST5");
 
 		superRoot.getChildren().add(coucheMap);
 		superRoot.getChildren().add(coucheEntite);
@@ -106,6 +109,7 @@ public class App extends Application{
 		stage.setScene(scene);
 		stage.setTitle("Level One");
 		stage.show();
+		System.out.println("TEST");
 		stage.requestFocus();
 		
 		
@@ -156,14 +160,14 @@ public class App extends Application{
 				break;
 			
 			case E:
-				System.out.println(event.getCode());
+				//System.out.println(event.getCode());
 				imv.setOpacity(0);
 				
 				
 				break;
 			
 			case A:
-				System.out.println(event.getCode());
+				//System.out.println(event.getCode());
 				imv.setOpacity(0);
 				if (coucheInventory.getOpacity()==0) {
 					coucheInventory.setOpacity(1);
@@ -175,7 +179,7 @@ public class App extends Application{
 			
 
 			case ESCAPE:
-				System.out.println(event.getCode());
+				//System.out.println(event.getCode());
 				imv.setOpacity(0);
 				
 				break;
@@ -194,7 +198,7 @@ public class App extends Application{
 	
 	
 	public Image loadImage(LivingEntity target) {
-		Image image= new Image(target.sprite());
+		Image image= new Image(getClass().getResourceAsStream("../"+target.sprite()));
 
 		
 		return image;
@@ -203,7 +207,7 @@ public class App extends Application{
 	public void addComponent(GridPane coucheMap,MapCreator map,int x, int y,Image image2) {
 		
 		// collect existing component of map
-		Image image= new Image(map.getRefMap()+map.getMap(x, y)+".png");
+		Image image= new Image(getClass().getResourceAsStream(map.getRefMap()+map.getMap(x, y)+".png"));
 		ImageView pic = new ImageView();
 		
 		
@@ -240,6 +244,7 @@ public class App extends Application{
 		
 	}
 	public void updatePosition(MapCreator map, GridPane coucheMap,Player player) { // for player only
+		//System.out.println("DEBUT Update ");
 		removeComponent(coucheMap,map,player.getOldPosition().getOrdonnee(),player.getOldPosition().getAbscisse());
 		
 		addComponent(coucheMap,map,player.getPosition().getAbscisse(),player.getPosition().getOrdonnee(),loadImage(player));
@@ -303,15 +308,15 @@ public class App extends Application{
 			
 		case 2: //Monster
 			if (joueur.fight((Monster)entities.getTabEntity(x,y))<0) {
-				imv.setImage(new Image("images/fight/defeat.png"));
+				imv.setImage(new Image(getClass().getResourceAsStream("../images/fight/defeat.png")));
 				imv.setOpacity(0.5);
 			}else {
-				imv.setImage(new Image("images/fight/victory.png"));
+				imv.setImage(new Image(getClass().getResourceAsStream("../images/fight/victory.png")));
 				imv.setOpacity(0.5);
 				ImageView imv2 = new ImageView();
-				System.out.println("images/monster/"+((Monster)entities.getTabEntity(x,y)).getTypeMonster().getTexture()+".png");
-				imv2.setImage(new Image( "images/monster/"+((Monster)entities.getTabEntity(x,y)).getTypeMonster().getTexture()+".png" ) );//(Monster)entities.getTabEntity(x,y-1).getSprite()
-				System.out.println("images/monster/"+((Monster)entities.getTabEntity(x,y)).getTypeMonster().getTexture()+".png");
+				//System.out.println("../images/monster/"+((Monster)entities.getTabEntity(x,y)).getTypeMonster().getTexture()+".png");
+				imv2.setImage(new Image( getClass().getResourceAsStream("../images/monster/"+((Monster)entities.getTabEntity(x,y)).getTypeMonster().getTexture()+".png" )) );//(Monster)entities.getTabEntity(x,y-1).getSprite()
+				//System.out.println("../images/monster/"+((Monster)entities.getTabEntity(x,y)).getTypeMonster().getTexture()+".png");
 				//joueur.move(x-joueur.getPosition().getAbscisse(),y-joueur.getPosition().getOrdonnee() );
 				updatePosition(map,coucheMap,joueur);
 				kill( coucheEntite, entities,  x,  y);
@@ -365,13 +370,15 @@ public class App extends Application{
 		if(e.getTabEntity(x,y) instanceof Monster) {
 			return 2;
 		}
-		System.out.println("Example:"+i.getTabItem(x,y).getItem().getItemEnum());
-		System.out.println("\n\n"+i.getItem(3,1));
-		if (i.getTabItem(x,y) instanceof DroppedItem & i.getTabItem(x,y).getItem().getItemEnum()!=ItemEnum.EMPTY) {
+
+		if (i.getTabItem(x,y) instanceof DroppedItem & !i.getTabItem(x,y).getItem().getItemEnum().equals(ItemEnum.EMPTY) & !i.getTabItem(x,y).getItem().getItemEnum().equals(ItemEnum.NONE)) {
 			return 3;
 		}
 		return 0;
 	}
+	
+	
+	//public void end()
 	
 	 
 	public static void main(String[] args) {

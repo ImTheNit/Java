@@ -77,9 +77,11 @@ public class SlotInventory implements Cloneable{
 		}
 		return null;
 	}
-	public void addEventHandler(Object object) {
+	/*
+	public void addEventHandler(GameEventHandler<SlotInventory> handler) {
+		eventHandler.add(handler);
 		// TODO Auto-generated method stub
 		
 	}
-
+*/
 }

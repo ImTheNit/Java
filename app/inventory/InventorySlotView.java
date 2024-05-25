@@ -14,10 +14,12 @@ private SlotView slotView;
 		
 		getStylesheets().add(getClass().getResource("InventorySlotView.css").toExternalForm());
 		
-		slotView = new SlotView(slot,TYPE);		
+		slotView = new SlotView(slot,TYPE);
+		System.out.println("TEST4");
 		System.out.println("testAprès");
 		setPadding(new Insets(0));
 		setGraphic(slotView);
+		System.out.println("TEST4");
 	}
 
 }

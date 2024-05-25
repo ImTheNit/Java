@@ -2,6 +2,7 @@ package app;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 
 import elmt_Base.Direction;
 import nonLiving.*;
@@ -88,8 +89,11 @@ public class EntityCreator {
 	
 	
 	public void loadEntity(String FileName) throws Exception{
-		FileReader file = new FileReader(FileName);
-		BufferedReader Br = new BufferedReader(file);
+		//FileReader file = new FileReader(FileName);
+		//InputStreamReader file = new InputStreamReader(getClass().getResourceAsStream(FileName));
+		System.out.println("../"+FileName);
+		System.out.println("test"+getClass().getResourceAsStream("../"+FileName));
+		BufferedReader Br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("../"+FileName)));
 		String Line;
 		
 		int i = 0;
@@ -164,28 +168,28 @@ public class EntityCreator {
 					
 					boolean b =false;
 					StackPane sp = new StackPane();
-					Image image = new Image("images/background/map/Grass1x1.png");//tmp
+					Image image = new Image(getClass().getResourceAsStream("../images/background/map/Grass1x1.png"));//tmp
 					//System.out.println(" TMP :images/background/entities/"+getEntity(i, j)+".png");
 					//image= new Image("images/background/entities/"+getEntity(i, j)+".png");
 					
 					if(getTabEntity(i,j) instanceof NPC){
 						
-						System.out.println("images/NPC/"+getEntity(i, j)+".png");
-						image= new Image("images/NPC/"+getEntity(i, j)+".png");
+						System.out.println("../images/NPC/"+getEntity(i, j)+".png");
+						image= new Image(getClass().getResourceAsStream("../images/NPC/"+getEntity(i, j)+".png"));
 						b =true;
 					}
 					
 					if(getTabEntity(i,j) instanceof Monster){
 						
-						System.out.println("images/monster/"+getEntity(i, j)+".png");
-						image= new Image("images/monster/"+getEntity(i, j)+".png");
+						System.out.println("../images/monster/"+getEntity(i, j)+".png");
+						image= new Image(getClass().getResourceAsStream("../images/monster/"+getEntity(i, j)+".png"));
 						((Monster)getTabEntity(i,j)).setStackPane(sp);
 						b=true;
 					}
 					
 					if (!b) {
-						System.out.println("images/background/entities/"+getEntity(i, j)+".png");
-						image= new Image("images/background/entities/"+getEntity(i, j)+".png");
+						System.out.println("../images/background/entities/"+getEntity(i, j)+".png");
+						image= new Image(getClass().getResourceAsStream("../images/background/entities/"+getEntity(i, j)+".png"));
 					}
 					
 					

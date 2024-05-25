@@ -18,8 +18,8 @@ public class SlotView extends StackPane{
 
 	private ImageView img;
 	private Label label;
-	private final String refPathItem = "images/item/";
-	private final String refPathSlotArm ="images/slot/";
+	private final String refPathItem = "../../images/item/";
+	private final String refPathSlotArm ="../../images/slot/";
 	public SlotView(SlotInventory slot,ItemType TYPE) {
 		super();
 		
@@ -28,39 +28,45 @@ public class SlotView extends StackPane{
 		img.setFitWidth(48);
 		System.out.println(slot);
 		System.out.println("test :\n"+getRefPathItem()+slot.getItem().getItemEnum().getTexture()+".png");
+		System.out.println("test :\n"+slot.getItem().getItemEnum());
+		
 		System.out.println(getRefPathItem()+ItemEnum.EMPTY.getTexture()+".png");
 		if (slot.getItem().getItemEnum() != ItemEnum.EMPTY) {
 			System.out.println("testhelmet");
-			img.setImage(new Image(getRefPathItem()+slot.getItem().getItemEnum().getTexture()+".png"));
+			img.setImage(new Image(getClass().getResourceAsStream(getRefPathItem()+slot.getItem().getItemEnum().getTexture()+".png")));
 			
 		}
 		else {
+			
 			switch(TYPE) {
 			case HELMET:
 				System.out.println("testhelmet");
-				img.setImage(new Image(getRefPathSlotArm()+"HelmetSlot.png"));
+				img.setImage(new Image(getClass().getResourceAsStream(getRefPathSlotArm()+"HelmetSlot.png")));
 				break;
 			case CHEST:
-				img.setImage(new Image(getRefPathSlotArm()+"ChestSlot.png"));
+				img.setImage(new Image(getClass().getResourceAsStream(getRefPathSlotArm()+"ChestSlot.png")));
 				break;
 			case GREAVE:
-				img.setImage(new Image(getRefPathSlotArm()+"GreaveSlot.png"));
+				img.setImage(new Image(getClass().getResourceAsStream(getRefPathSlotArm()+"GreaveSlot.png")));
 				break;
 			case BOOTS:
-				img.setImage(new Image(getRefPathSlotArm()+"BootsSlot.png"));
+				img.setImage(new Image(getClass().getResourceAsStream(getRefPathSlotArm()+"BootsSlot.png")));
 				break;
 			case SHIELD:
-				img.setImage(new Image(getRefPathSlotArm()+"HelmetSlot.png"));
+				img.setImage(new Image(getClass().getResourceAsStream(getRefPathSlotArm()+"HelmetSlot.png")));
 				break;
 			case BACKPACK:
-				img.setImage(new Image(getRefPathSlotArm()+"HelmetSlot.png"));
+				img.setImage(new Image(getClass().getResourceAsStream(getRefPathSlotArm()+"HelmetSlot.png")));
 				break;
 			default:
-				img.setImage(new Image(getRefPathItem()+ItemEnum.EMPTY.getTexture()+".png"));
+				
+				img.setImage(new Image(getClass().getResourceAsStream(getRefPathItem()+ItemEnum.EMPTY.getTexture()+".png")));
+				
 				break;
 				
 			}
 		}	
+		System.out.println("TEST4");
 		System.out.println("test");
 		HBox labelPane = new HBox();
 		labelPane.setAlignment(Pos.BOTTOM_RIGHT);

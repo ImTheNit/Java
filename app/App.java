@@ -29,7 +29,7 @@ public class App extends Application{
 	private ImageView playerView = new ImageView();
 	private final int DimX=30;
 	private final int DimY=16;
-	
+	private final int killGoal = 15;
 	private VBox CoucheInventory;
 	
 	/*
@@ -47,6 +47,9 @@ public class App extends Application{
 	
 	public int getDimY() {
 		return DimY;
+	}
+	public int getKillGoal() {
+		return killGoal;
 	}
 	public VBox getCoucheInventory() {
 		return CoucheInventory;
@@ -138,6 +141,8 @@ public class App extends Application{
 		
 		scene.setOnKeyPressed((event) -> { 
 			stage.requestFocus();
+			
+			
 			switch(event.getCode()) {
 			
 			case Z:
@@ -218,7 +223,8 @@ public class App extends Application{
 				break;
 			case O:
 				
-				System.out.println(joueur.getInventory());
+				//System.out.println(joueur.getInventory());
+				System.out.println(joueur.toString());
 				//InView.updateInventoryView(joueur.getInventory());
 				
 				break;
@@ -237,6 +243,9 @@ public class App extends Application{
 				System.out.println(event.getCode());
 				break;
 				
+			}
+			if (joueur.getDeathCount()>=4 || joueur.getKillCount()>=getKillGoal()) {
+				return;
 			}
             
     });
@@ -338,9 +347,7 @@ public class App extends Application{
 	 */
 	public void mouvementZQSD(Stage stage,StackPane superRoot,Direction Dir,MapCreator map, EntityCreator entities,ItemCreator items, InventoryView InView, GridPane coucheMap,GridPane coucheEntite,GridPane coucheItem , Player joueur,ImageView imv,int x,int y) {
 		
-		if (joueur.getDeathCount()>=4) {
-			joueur.die();
-		}
+		
 		
 		
 		
@@ -391,7 +398,11 @@ public class App extends Application{
 				//joueur.move(x-joueur.getPosition().getAbscisse(),y-joueur.getPosition().getOrdonnee() );
 				updatePosition(map,coucheMap,joueur);
 				kill( coucheEntite, entities,  x,  y);
-				
+				System.out.println("killCount"+joueur.getKillCount());
+				if (joueur.getKillCount()>=getKillGoal()) {
+					System.out.println("killCount"+joueur.getKillCount());
+					win();
+				}
 			}
 			break;
 		case 3: //Item

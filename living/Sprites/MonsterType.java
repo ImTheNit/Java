@@ -4,9 +4,9 @@ public enum MonsterType {
 	
 	None("",1,1,1,1,1,1),
 	
-	Zombie("zombie",1,2,3,4,5,6),
-	Squeleton("squeleton",1,2,3,4,5,6),
-	Knight("knight",1,2,3,100,100,100)
+	Zombie("zombie",1,2,3,100,5,6),
+	//Squeleton("squeleton",1,2,100,4,5,6),
+	Knight("knight",1,2,3,100,20,20)
 	
 	
 	

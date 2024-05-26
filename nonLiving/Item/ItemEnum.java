@@ -9,49 +9,49 @@ public enum ItemEnum {
 	
 	
 	NORMAL_HELMET("normal helmet",ItemType.HELMET,PassivEffect.SMALL_INCREASE_LIFE,ActivEffect.NONE,1,"Helmet1"),
-	LIFE_HELMET("life helmet",ItemType.HELMET,PassivEffect.MEDIUM_INCREASE_LIFE,ActivEffect.NONE,1,"HelmetLife.png"),
-	ATK_HELMET("attack helmet",ItemType.HELMET,PassivEffect.MEDIUM_INCREASE_ATK,ActivEffect.NONE,1,"HelmetAtk.png"),
-	DEF_HELMET("defence helmet",ItemType.HELMET,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"HelmetDef.png"),
+	LIFE_HELMET("life helmet",ItemType.HELMET,PassivEffect.MEDIUM_INCREASE_LIFE,ActivEffect.NONE,1,"Helmet2"),
+	ATK_HELMET("attack helmet",ItemType.HELMET,PassivEffect.MEDIUM_INCREASE_ATK,ActivEffect.NONE,1,"Helmet3"),
+	//DEF_HELMET("defence helmet",ItemType.HELMET,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"HelmetDef.png"),
 	
-	NORMAL_CHEST("normal chest",ItemType.CHEST,PassivEffect.SMALL_INCREASE_LIFE,ActivEffect.NONE,1,"Chest.png"),
-	LIFE_CHEST("life chest",ItemType.CHEST,PassivEffect.MEDIUM_INCREASE_LIFE,ActivEffect.NONE,1,"ChestLife.png"),
-	ATK_CHEST("attack chest",ItemType.CHEST,PassivEffect.MEDIUM_INCREASE_ATK,ActivEffect.NONE,1,"ChestAtk.png"),
-	DEF_CHEST("defence chest",ItemType.CHEST,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"ChestDef.png"),
+	NORMAL_CHEST("normal chest",ItemType.CHEST,PassivEffect.SMALL_INCREASE_LIFE,ActivEffect.NONE,1,"Chest1"),
+	LIFE_CHEST("life chest",ItemType.CHEST,PassivEffect.MEDIUM_INCREASE_LIFE,ActivEffect.NONE,1,"Chest2"),
+	ATK_CHEST("attack chest",ItemType.CHEST,PassivEffect.MEDIUM_INCREASE_ATK,ActivEffect.NONE,1,"Chest3"),
+	//DEF_CHEST("defence chest",ItemType.CHEST,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"ChestDef.png"),
 	
-	NORMAL_GREAVE("normal greave",ItemType.GREAVE,PassivEffect.SMALL_INCREASE_LIFE,ActivEffect.NONE,1,"Greave.png"),
-	LIFE_GREAVE("life greave",ItemType.GREAVE,PassivEffect.MEDIUM_INCREASE_LIFE,ActivEffect.NONE,1,"GreaveLife.png"),
-	ATK_GREAVE("attack greave",ItemType.GREAVE,PassivEffect.MEDIUM_INCREASE_ATK,ActivEffect.NONE,1,"GreaveAtk.png"),
-	DEF_GREAVE("defence greave",ItemType.GREAVE,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"GreaveDef.png"),
+	NORMAL_GREAVE("normal greave",ItemType.GREAVE,PassivEffect.SMALL_INCREASE_LIFE,ActivEffect.NONE,1,"greave1"),
+	LIFE_GREAVE("life greave",ItemType.GREAVE,PassivEffect.MEDIUM_INCREASE_LIFE,ActivEffect.NONE,1,"greave2"),
+	//ATK_GREAVE("attack greave",ItemType.GREAVE,PassivEffect.MEDIUM_INCREASE_ATK,ActivEffect.NONE,1,"GreaveAtk.png"),
+	//DEF_GREAVE("defence greave",ItemType.GREAVE,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"GreaveDef.png"),
 	
-	NORMAL_BOOT("normal boots",ItemType.BOOTS,PassivEffect.SMALL_INCREASE_LIFE,ActivEffect.NONE,1,"Boots.png"),
-	LIFE_BOOT("life boots",ItemType.BOOTS,PassivEffect.MEDIUM_INCREASE_LIFE,ActivEffect.NONE,1,"BootsLife.png"),
-	ATK_BOOT("attack boots",ItemType.BOOTS,PassivEffect.MEDIUM_INCREASE_ATK,ActivEffect.NONE,1,"BootsAtk.png"),
-	DEF_BOOT("defence boots",ItemType.BOOTS,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"BootsDef.png"),
+	NORMAL_BOOT("normal boots",ItemType.BOOTS,PassivEffect.SMALL_INCREASE_LIFE,ActivEffect.NONE,1,"Boots1"),
+	LIFE_BOOT("life boots",ItemType.BOOTS,PassivEffect.MEDIUM_INCREASE_LIFE,ActivEffect.NONE,1,"Boots2"),
+	//ATK_BOOT("attack boots",ItemType.BOOTS,PassivEffect.MEDIUM_INCREASE_ATK,ActivEffect.NONE,1,"BootsAtk.png"),
+	//DEF_BOOT("defence boots",ItemType.BOOTS,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"BootsDef.png"),
 	
-	SMALL_SHIELD("small shield",ItemType.SHIELD,PassivEffect.SMALL_INCREASE_DEF,ActivEffect.NONE,1,"Shield.png"),
-	MEDIUM_SHIELD("medium shield",ItemType.SHIELD,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"ShieldMedium.png"),
-	BIG_SHIELD("big shield",ItemType.SHIELD,PassivEffect.BIG_INCREASE_DEF,ActivEffect.NONE,1,"ShieldBig.png"),
+	SMALL_SHIELD("small shield",ItemType.SHIELD,PassivEffect.SMALL_INCREASE_DEF,ActivEffect.NONE,1,"shield"),
+	MEDIUM_SHIELD("medium shield",ItemType.SHIELD,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"shield2"),
+	BIG_SHIELD("big shield",ItemType.SHIELD,PassivEffect.BIG_INCREASE_DEF,ActivEffect.NONE,1,"shield3"),
 	
-	SMALL_BACKPACK("small backpack",ItemType.BACKPACK,PassivEffect.SMALL_INCREASE_STORAGE,ActivEffect.NONE,1,"lien"),
-	MEDIUM_BACKPACK("small backpack",ItemType.BACKPACK,PassivEffect.MEDIUM_INCREASE_STORAGE,ActivEffect.NONE,1,"lien"),
-	BIG_BACKPACK("small backpack",ItemType.BACKPACK,PassivEffect.BIG_INCREASE_STORAGE,ActivEffect.NONE,1,"lien"),
-	
-	
-	
-	
-	NORMAL_SWORD("normal sword",ItemType.SWORD,PassivEffect.SMALL_INCREASE_LIFE,ActivEffect.NONE,1,"lien"),
-	LIFE_SWORD("life sword",ItemType.SWORD,PassivEffect.MEDIUM_INCREASE_LIFE,ActivEffect.NONE,1,"lien"),
-	ATK_SWORD("attack sword",ItemType.SWORD,PassivEffect.MEDIUM_INCREASE_ATK,ActivEffect.NONE,1,"lien"),
-	DEF_SWORD("defence sword",ItemType.SWORD,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"lien"),
+	SMALL_BACKPACK("small backpack",ItemType.BACKPACK,PassivEffect.SMALL_INCREASE_STORAGE,ActivEffect.NONE,1,"backpack"),
+	MEDIUM_BACKPACK("small backpack",ItemType.BACKPACK,PassivEffect.MEDIUM_INCREASE_STORAGE,ActivEffect.NONE,1,"BigBackpack"),
+	//BIG_BACKPACK("small backpack",ItemType.BACKPACK,PassivEffect.BIG_INCREASE_STORAGE,ActivEffect.NONE,1,"lien"),
 	
 	
 	
 	
+	NORMAL_SWORD("normal sword",ItemType.SWORD,PassivEffect.SMALL_INCREASE_LIFE,ActivEffect.NONE,1,"sword1"),
+	LIFE_SWORD("life sword",ItemType.SWORD,PassivEffect.MEDIUM_INCREASE_LIFE,ActivEffect.NONE,1,"sword2"),
+	ATK_SWORD("attack sword",ItemType.SWORD,PassivEffect.MEDIUM_INCREASE_ATK,ActivEffect.NONE,1,"sword1"),
+	//DEF_SWORD("defence sword",ItemType.SWORD,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"lien"),
 	
 	
-	SMALL_LIFE_POTION("small life potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.SMALL_HEAL,5,"lien"),
-	MEDIUM_LIFE_POTION("medium life potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.MEDIUM_HEAL,5,"lien"),
-	BIG_LIFE_POTION("big life potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.BIG_HEAL,5,"lien")
+	
+	
+	
+	
+	SMALL_LIFE_POTION("small life potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.SMALL_HEAL,5,"SmallGreenPotion"),
+	MEDIUM_LIFE_POTION("medium life potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.MEDIUM_HEAL,5,"MediumGreenPotion"),
+	BIG_LIFE_POTION("big life potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.BIG_HEAL,5,"BigGreenPotion")
 	
 	
 	// A COMPLETER 

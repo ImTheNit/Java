@@ -1,16 +1,16 @@
 Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day
 Tree1Day																													Tree1Day
-Tree1Day																													Tree1Day
-Tree1Day	NORMAL_HELMET																												Tree1Day
-Tree1Day																													Tree1Day
+Tree1Day																NORMAL_SWORD													Tree1Day
 Tree1Day																													Tree1Day
 Tree1Day																													Tree1Day
+Tree1Day										BIG_LIFE_POTION																			Tree1Day
 Tree1Day																													Tree1Day
-Tree1Day																													Tree1Day
-Tree1Day																													Tree1Day
-Tree1Day																													Tree1Day
-Tree1Day		NORMAL_HELMET																											Tree1Day
+Tree1Day														SMALL_SHIELD															Tree1Day
 Tree1Day																													Tree1Day
 Tree1Day																													Tree1Day
 Tree1Day																													Tree1Day
+Tree1Day		ATK_HELMET																											Tree1Day
+Tree1Day																													Tree1Day
+Tree1Day																													Tree1Day
+Tree1Day	LIFE_GREAVE				ATK_CHEST						LIFE_BOOT				SMALL_BACKPACK														Tree1Day
 Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day	Tree1Day

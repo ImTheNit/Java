@@ -20,6 +20,7 @@ import nonLiving.EnumEntity;
 
 public class Player extends LivingEntity{
 	private int deathCount;
+	private int killCount;
 	private ArrayList<Quest> ListQuest;
 	private static final String texture = "player";
 	public Point2D oldPosition;
@@ -47,6 +48,9 @@ public class Player extends LivingEntity{
 	public int getDeathCount() {
 		return deathCount;
 	}
+	public int getKillCount() {
+		return killCount;
+	}
 	public ArrayList<Quest> getListQuest(){
 		return ListQuest;
 	}
@@ -65,6 +69,9 @@ public class Player extends LivingEntity{
 	 */
 	public void setDeathCount(int x) {
 		deathCount = x;
+	}
+	public void setKillCount(int x) {
+		killCount = x;
 	}
 	public void setListQuest(ArrayList<Quest> quest) {
 		ListQuest = quest;
@@ -127,6 +134,8 @@ public class Player extends LivingEntity{
 			this.hit(target);
 			if (target.getLife()<=0) {
 				System.out.println("\nPlayer won on tour n° : "+round+"\n");
+				setLife(getBaseMaxLife());
+				kill();
 				return round;
 			}
 			round ++;
@@ -134,13 +143,19 @@ public class Player extends LivingEntity{
 			target.hit(this);
 		}
 		System.out.println("\nMonster Won on tour : "+round);
+		//reset life
+		setLife(getBaseMaxLife());
+		target.setLife(target.getBaseMaxLife());
 		die();//increment deathcount
 		return -round;
+	}
+	public void kill() {
+		setKillCount(getKillCount()+1);
 	}
 	
 	
 	public void die() {
-		if (getDeathCount()==4) {
+		if (getDeathCount()>=4) {
 			System.out.println("5 morts atteintes, fin de la partie");
 			//System.exit(1);
 			Text text = new Text("5 morts atteintes, fin de la partie");

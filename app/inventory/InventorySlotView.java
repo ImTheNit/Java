@@ -20,6 +20,7 @@ private SlotView slotView;
 		setPadding(new Insets(0));
 		setGraphic(slotView);
 		System.out.println("TEST4");
+		
 	}
 
 }

@@ -8,7 +8,7 @@ public enum ItemEnum {
 	NONE("Only for Displaying map correctly",ItemType.EMPTY,PassivEffect.NONE,ActivEffect.NONE,1,"Free1Day"),
 	
 	
-	NORMAL_HELMET("normal helmet",ItemType.HELMET,PassivEffect.SMALL_INCREASE_LIFE,ActivEffect.NONE,1,"Helmet1.png"),
+	NORMAL_HELMET("normal helmet",ItemType.HELMET,PassivEffect.SMALL_INCREASE_LIFE,ActivEffect.NONE,1,"Helmet1"),
 	LIFE_HELMET("life helmet",ItemType.HELMET,PassivEffect.MEDIUM_INCREASE_LIFE,ActivEffect.NONE,1,"HelmetLife.png"),
 	ATK_HELMET("attack helmet",ItemType.HELMET,PassivEffect.MEDIUM_INCREASE_ATK,ActivEffect.NONE,1,"HelmetAtk.png"),
 	DEF_HELMET("defence helmet",ItemType.HELMET,PassivEffect.MEDIUM_INCREASE_DEF,ActivEffect.NONE,1,"HelmetDef.png"),

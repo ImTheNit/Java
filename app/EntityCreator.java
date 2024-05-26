@@ -129,7 +129,10 @@ public class EntityCreator {
 					try {
 						MonsterType m = MonsterType.valueOf(split[j]);
 						
-						nle = new Monster(i,j,0,Direction.Up,m.getLevel(),m.getXp(),m.getXpMax(),m.getLife(),m.getAtk(),m.getDef(),m.name(),m);
+						Monster nlet = new Monster(i,j,0,Direction.Up,m.getLevel(),m.getXp(),m.getXpMax(),m.getLife(),m.getAtk(),m.getDef(),m.name(),m);
+						System.out.println("test"+nlet.getClass());
+						System.out.println("test"+nle.getClass());
+						nle = (Entity)nlet.clone();
 						System.out.println("autre1 : "+((Monster) nle).getTypeMonster());
 						setTabEntity((Monster)nle,j,i);
 					}catch(Exception e) {

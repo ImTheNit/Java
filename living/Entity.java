@@ -4,7 +4,7 @@ import elmt_Base.Direction;
 import elmt_Base.Point2D;
 import nonLiving.EnumEntity;
 
-public class Entity {
+public class Entity implements Cloneable{
 	private Point2D position ;
 	private double weight;
 	private Direction facing;
@@ -66,6 +66,10 @@ public class Entity {
 		getPosition().setOrdonnee(getPosition().getOrdonnee()+deltaY);
 	}
 	
+	public Object clone() throws CloneNotSupportedException 
+    { 
+        return super.clone(); 
+    } 
 	
 	
 	

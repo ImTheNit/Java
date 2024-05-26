@@ -12,6 +12,7 @@ public class Inventory {
 	private int nbSlotUse;
 	private int nextEmpty; // > size if full
 	private ArmorInventory armorInventory ;
+	//private SlotInventory hand;
 	
 	
 	/*
@@ -21,11 +22,11 @@ public class Inventory {
 		setBaseSize(size);
 		setInventory();
 		initArmorInventory();
+		//setHand(new SlotInventory());
+		
 	}
 	public Inventory() { // constructor light
-		setBaseSize(10);
-		setInventory();
-		initArmorInventory();
+		this(10);// default size
 	}
 	/*
 	 * getter
@@ -51,7 +52,9 @@ public class Inventory {
 	public ArmorInventory getArmorInventory() {
 		return armorInventory;
 	}
-	
+	/*public SlotInventory getHand() {
+		return hand;
+	}*/
 	
 	/*
 	 * setter
@@ -77,6 +80,9 @@ public class Inventory {
 	public void setArmorInventory(ArmorInventory x) {
 		armorInventory = x;
 	}
+	/*public void setHand(SlotInventory s) {
+		hand = s;
+	}*/
 	
 	
 	

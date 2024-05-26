@@ -299,6 +299,7 @@ public class LivingEntity extends Entity{
 	
 	public SlotInventory wear(SlotInventory Slotitem) { //return the old equipment
 		Item i;
+		System.out.println("type :"+Slotitem.getItem().getItemEnum().getType().name());
 		switch(Slotitem.getItem().getItemEnum().getType()) {
 		case HELMET :
 			i = getInventory().getArmorInventory().replaceHelmet(Slotitem.getItem());

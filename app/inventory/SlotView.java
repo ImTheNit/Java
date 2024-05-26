@@ -2,7 +2,7 @@ package app.inventory;
 
 import nonLiving.Item.*;
 import nonLiving.*;
-
+import event.GameEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -14,12 +14,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class SlotView extends StackPane{
+public class SlotView extends StackPane implements GameEventHandler<SlotInventory>{
 
 	private ImageView img;
 	private Label label;
 	private final String refPathItem = "../../images/item/";
 	private final String refPathSlotArm ="../../images/slot/";
+	
 	public SlotView(SlotInventory slot,ItemType TYPE) {
 		super();
 		
@@ -32,7 +33,7 @@ public class SlotView extends StackPane{
 		
 		System.out.println(getRefPathItem()+ItemEnum.EMPTY.getTexture()+".png");
 		if (slot.getItem().getItemEnum() != ItemEnum.EMPTY) {
-			System.out.println("testhelmet");
+			System.out.println("testhelmet\n"+getRefPathItem()+slot.getItem().getItemEnum().getTexture()+".png");
 			img.setImage(new Image(getClass().getResourceAsStream(getRefPathItem()+slot.getItem().getItemEnum().getTexture()+".png")));
 			
 		}
@@ -53,10 +54,10 @@ public class SlotView extends StackPane{
 				img.setImage(new Image(getClass().getResourceAsStream(getRefPathSlotArm()+"BootsSlot.png")));
 				break;
 			case SHIELD:
-				img.setImage(new Image(getClass().getResourceAsStream(getRefPathSlotArm()+"HelmetSlot.png")));
+				img.setImage(new Image(getClass().getResourceAsStream(getRefPathItem()+ItemEnum.EMPTY.getTexture()+".png")));
 				break;
 			case BACKPACK:
-				img.setImage(new Image(getClass().getResourceAsStream(getRefPathSlotArm()+"HelmetSlot.png")));
+				img.setImage(new Image(getClass().getResourceAsStream(getRefPathItem()+ItemEnum.EMPTY.getTexture()+".png")));
 				break;
 			default:
 				
@@ -78,16 +79,20 @@ public class SlotView extends StackPane{
 		labelPane.getChildren().add(label);
 		
 		getChildren().addAll(img, labelPane);
-		/*
+		System.out.println("TEST9");
+		slot.addEventHandler(this);
 		slot.addEventHandler((oldSlot, newSlot) -> {
-            if (newSlot.getItem() != null)
-            	img.setImage(newSlot.getItem().getTexture());
-            else
-            	img.setImage(ItemEnum.noItemTexture);
+			System.out.println("TEST10");
+            if (newSlot.getItem().getItemEnum() != ItemEnum.EMPTY) {
+            	System.out.println("TEST11");
+            	img.setImage(new Image(getClass().getResourceAsStream(getRefPathItem()+newSlot.getItem().getItemEnum().getTexture()+".png"))); //TODO
+            }else {
+            	System.out.println("TEST12");
+            	img.setImage(new Image(getClass().getResourceAsStream(getRefPathItem()+ItemEnum.EMPTY.getTexture()+".png")));
             
-            setQuantity(newSlot.getQuantity());
+            setQuantity(newSlot.getQuantity());}
         });
-		*/
+		
 		
 		setBackground(new Background(new BackgroundFill(new Color(0, 0, 0, 0.5), null, null)));
 		//ImageView imV = new ImageView(); 
@@ -107,5 +112,19 @@ public class SlotView extends StackPane{
 			label.setText("");
 		else
 			label.setText("" + quantity);
+	}
+
+
+
+	@Override
+	public void handle(SlotInventory newvalue, SlotInventory oldValue) {
+		System.out.println("\nUPDATE\n"+newvalue.getQuantity());
+		if (newvalue.getItem().getItemEnum()!=ItemEnum.EMPTY) {
+			img.setImage(new Image(  getClass().getResourceAsStream(  getRefPathItem()+newvalue.getItem().getItemEnum().getTexture()+".png"  )  ));
+		}
+		else {
+			img.setImage(new Image(getClass().getResourceAsStream(getRefPathItem()+ItemEnum.EMPTY.getTexture()+".png")));
+		}
+		setQuantity(newvalue.getQuantity());
 	}
 }

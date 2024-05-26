@@ -168,8 +168,8 @@ public class ItemCreator {
 						System.out.println("../images/background/entities/"+getItem(i, j)+".png");
 						image= new Image(getClass().getResourceAsStream("../images/background/entities/"+getItem(i, j)+".png"));
 					}else {
-						System.out.println("../images/item/"+getTabItem(i,j).getItem().getItemEnum().getTexture());
-						image= new Image(getClass().getResourceAsStream("../images/item/"+getTabItem(i,j).getItem().getItemEnum().getTexture()));
+						System.out.println("../images/item/"+getTabItem(i,j).getItem().getItemEnum().getTexture()+".png");
+						image= new Image(getClass().getResourceAsStream("../images/item/"+getTabItem(i,j).getItem().getItemEnum().getTexture()+".png"));
 						getTabItem(i,j).setStackPane(sp);
 					}
 					

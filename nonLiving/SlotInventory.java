@@ -1,5 +1,8 @@
 package nonLiving;
 
+import java.util.ArrayList;
+
+import event.GameEventHandler;
 import nonLiving.Item.Item;
 import nonLiving.Item.ItemEnum;
 
@@ -10,7 +13,7 @@ public class SlotInventory implements Cloneable{
 	private Item item;
 	private int quantity;
 	private boolean isFull;
-	
+	private ArrayList<GameEventHandler<SlotInventory>> eventHandlers;
 	/*
 	 * constructor
 	 */
@@ -18,6 +21,7 @@ public class SlotInventory implements Cloneable{
 		setItem(i);
 		setQuantity(x);
 		setIsFull(f);
+		eventHandlers = new ArrayList<GameEventHandler<SlotInventory>>();
 	}
 	public SlotInventory() { //constructor for empty item
 		this(new Item(),0,false);
@@ -77,11 +81,13 @@ public class SlotInventory implements Cloneable{
 		}
 		return null;
 	}
+
 	/*
+	 * add an event handler
+	 */
 	public void addEventHandler(GameEventHandler<SlotInventory> handler) {
-		eventHandler.add(handler);
+		eventHandlers.add(handler);
 		// TODO Auto-generated method stub
 		
 	}
-*/
 }

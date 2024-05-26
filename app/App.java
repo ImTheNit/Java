@@ -2,13 +2,18 @@ package app;
 
 import elmt_Base.Direction;
 import javafx.application.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.stage.*;
 
 import living.*;
 import nonLiving.EnumEntity;
+import nonLiving.SlotInventory;
 import nonLiving.Item.DroppedItem;
 import nonLiving.Item.Item;
 import nonLiving.Item.ItemEnum;
+import nonLiving.Item.ItemGroup;
 import app.inventory.*;
 
 import javafx.scene.*;
@@ -16,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.image.* ;
 import javafx.scene.input.KeyCode;
+import javafx.scene.text.*;
 
 
 public class App extends Application{
@@ -23,6 +29,8 @@ public class App extends Application{
 	private ImageView playerView = new ImageView();
 	private final int DimX=30;
 	private final int DimY=16;
+	
+	private VBox CoucheInventory;
 	
 	/*
 	 * getter
@@ -40,6 +48,9 @@ public class App extends Application{
 	public int getDimY() {
 		return DimY;
 	}
+	public VBox getCoucheInventory() {
+		return CoucheInventory;
+	}
 	
 	/*
 	 * setter 
@@ -51,6 +62,9 @@ public class App extends Application{
 		playerView.setFitHeight(30);
 		playerView.setPreserveRatio(true);
 	}
+	public void setCoucheInventory(VBox CoucheInventory) {
+		this.CoucheInventory = CoucheInventory;
+	}
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -61,6 +75,7 @@ public class App extends Application{
 		ItemCreator items = new ItemCreator("resources/items.txt",getDimX(),getDimY());
 		FightDisplay fD = new FightDisplay();
 		InventoryView InView = new InventoryView();
+		setCoucheInventory(new VBox());
 		//System.out.println("TEST");
 		/*
 		 * debug use
@@ -75,6 +90,10 @@ public class App extends Application{
 		}
 		*/
 		Player joueur = new Player(10, 10, 1, Direction.Up, 100, 10, 10, "Joueur1");
+		Item item = new Item(9, "NORMAL_HELMET",ItemEnum.NORMAL_HELMET, 1,1);
+		DroppedItem di = new DroppedItem(0,0,0,Direction.Up, item, 1);
+		
+		//joueur.pickItem(di);
 		StackPane superRoot = new StackPane();
 
 		GridPane coucheMap = map.initMap();
@@ -85,8 +104,10 @@ public class App extends Application{
 		ImageView imv = new ImageView();
 		VBox fightDisplay =fD.initDisplay(imv);
 		//System.out.println("TEST3");
-		VBox coucheInventory = InView.initInventoryView(joueur.getInventory());
-		coucheInventory.setOpacity(0);		
+		InView.initInventoryView(joueur.getInventory());
+		//VBox coucheInventory = InView.getInventoryVbox();
+		setCoucheInventory(InView.getInventoryVbox());
+		getCoucheInventory().setOpacity(0);		
 		
 		
 		//System.out.println("TEST4");
@@ -102,15 +123,17 @@ public class App extends Application{
 		superRoot.getChildren().add(coucheEntite);
 		superRoot.getChildren().add(coucheItem);
 		superRoot.getChildren().add(fightDisplay);
-		superRoot.getChildren().add(coucheInventory);
+		superRoot.getChildren().add(getCoucheInventory());
 		
 		Scene scene = new Scene(superRoot,1500,800);
 		
 		stage.setScene(scene);
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("../images/player/player_down.png")));
 		stage.setTitle("Level One");
 		stage.show();
 		System.out.println("TEST");
 		stage.requestFocus();
+		stage.setResizable(false);
 		
 		
 		scene.setOnKeyPressed((event) -> { 
@@ -123,7 +146,7 @@ public class App extends Application{
 				int x = joueur.getPosition().getAbscisse();
 				int y = joueur.getPosition().getOrdonnee();
 				
-				mouvementZQSD(Direction.Up, map,  entities, items, coucheMap, coucheEntite, coucheItem, joueur, imv, x, y-1);
+				mouvementZQSD(stage,superRoot,Direction.Up, map,  entities, items, InView, coucheMap, coucheEntite, coucheItem, joueur, imv, x, y-1);
 				
 				break;
 				
@@ -134,7 +157,7 @@ public class App extends Application{
 				int x1 = joueur.getPosition().getAbscisse();
 				int y1 = joueur.getPosition().getOrdonnee();
 				
-				mouvementZQSD(Direction.Left, map,  entities, items, coucheMap, coucheEntite, coucheItem, joueur, imv, x1-1, y1);
+				mouvementZQSD(stage,superRoot,Direction.Left, map,  entities, items, InView, coucheMap, coucheEntite, coucheItem, joueur, imv, x1-1, y1);
 				
 				break;
 				
@@ -145,7 +168,7 @@ public class App extends Application{
 				int x2 = joueur.getPosition().getAbscisse();
 				int y2 = joueur.getPosition().getOrdonnee();
 				
-				mouvementZQSD(Direction.Down, map,  entities, items,  coucheMap, coucheEntite, coucheItem, joueur, imv, x2,y2+1);
+				mouvementZQSD(stage,superRoot,Direction.Down, map,  entities, items, InView,  coucheMap, coucheEntite, coucheItem, joueur, imv, x2,y2+1);
 				
 				
 				break;
@@ -155,24 +178,30 @@ public class App extends Application{
 				int x3 = joueur.getPosition().getAbscisse();
 				int y3 = joueur.getPosition().getOrdonnee();
 				
-				mouvementZQSD(Direction.Right, map,  entities, items, coucheMap, coucheEntite, coucheItem, joueur, imv, x3+1,y3);
+				mouvementZQSD(stage,superRoot,Direction.Right, map,  entities, items, InView, coucheMap, coucheEntite, coucheItem, joueur, imv, x3+1,y3);
 
 				break;
 			
 			case E:
 				//System.out.println(event.getCode());
 				imv.setOpacity(0);
+				System.out.println("test entité 1"+entities.getTabEntity(1, 1));
+				System.out.println("test entité 2"+entities.getTabEntity(2, 1));
+				System.out.println("test entité 3"+entities.getTabEntity(3, 1));
+				//System.out.println(entities.getTabEntity(1, 4));
+				
 				
 				
 				break;
 			
 			case A:
-				//System.out.println(event.getCode());
+				System.out.println(event.getCode() );
+				System.out.println(InView.getInventoryVbox().getOpacity());
 				imv.setOpacity(0);
-				if (coucheInventory.getOpacity()==0) {
-					coucheInventory.setOpacity(1);
+				if (InView.getInventoryVbox().getOpacity()==0) {
+					InView.getInventoryVbox().setOpacity(1);
 				}else {
-					coucheInventory.setOpacity(0);
+					InView.getInventoryVbox().setOpacity(0);
 				}
 				
 				break;
@@ -181,9 +210,28 @@ public class App extends Application{
 			case ESCAPE:
 				//System.out.println(event.getCode());
 				imv.setOpacity(0);
+				quit();
 				
 				break;
-			
+			case P:
+				win();
+				break;
+			case O:
+				
+				System.out.println(joueur.getInventory());
+				//InView.updateInventoryView(joueur.getInventory());
+				
+				break;
+			case U:
+				Item item2 = new Item(10, "NORMAL_HELMET",ItemEnum.NORMAL_HELMET, 1,1);
+				DroppedItem di2 = new DroppedItem(0,0,0,Direction.Up, item2, 1);
+				
+				pickItem(superRoot,InView,joueur,di2);
+				break;
+			case K:
+				
+				break;
+
 			default:
 				imv.setOpacity(0);
 				System.out.println(event.getCode());
@@ -288,7 +336,14 @@ public class App extends Application{
 	 * act if neccessary
 	 * 
 	 */
-	public void mouvementZQSD(Direction Dir,MapCreator map, EntityCreator entities,ItemCreator items, GridPane coucheMap,GridPane coucheEntite,GridPane coucheItem , Player joueur,ImageView imv,int x,int y) {
+	public void mouvementZQSD(Stage stage,StackPane superRoot,Direction Dir,MapCreator map, EntityCreator entities,ItemCreator items, InventoryView InView, GridPane coucheMap,GridPane coucheEntite,GridPane coucheItem , Player joueur,ImageView imv,int x,int y) {
+		
+		if (joueur.getDeathCount()>=4) {
+			joueur.die();
+		}
+		
+		
+		
 		imv.setOpacity(0);
 		
 		joueur.setFacing(Dir);
@@ -303,12 +358,28 @@ public class App extends Application{
 		switch (actionable(x,y,entities,items)) {
 		
 		case 1 : //NPC
+			Tooltip ttip =new Tooltip();
+			ttip.setText("je suis un PNJ");
+			ttip.setFont(Font.font("Arial", FontPosture.ITALIC, 15));
 			
+			Label l = new Label("I'm a NPC ");
+			l.setStyle("-fx-padding:50px;");
+			l.setAlignment(Pos.CENTER);
+			l.setTooltip(ttip);
+			TilePane r = new TilePane();
+			r.setAlignment(Pos.CENTER_LEFT);
+			
+			
+			
+			
+			r.getChildren().add(l);
+			superRoot.getChildren().add(r);
 			break;
 			
 		case 2: //Monster
-			if (joueur.fight((Monster)entities.getTabEntity(x,y))<0) {
+			if (joueur.fight((Monster)entities.getTabEntity(x,y))<=0) {
 				imv.setImage(new Image(getClass().getResourceAsStream("../images/fight/defeat.png")));
+				
 				imv.setOpacity(0.5);
 			}else {
 				imv.setImage(new Image(getClass().getResourceAsStream("../images/fight/victory.png")));
@@ -325,7 +396,16 @@ public class App extends Application{
 			break;
 		case 3: //Item
 			System.out.println("Collision item");
-			joueur.pickItem(items.getTabItem(x, y));
+			if (items.getTabItem(x, y).getItem().getItemEnum().getType().getGroup()==ItemGroup.EQUIPMENT) {
+				//pickItem(superRoot,InView,joueur,items.getTabItem(x, y));
+				joueur.wear(new SlotInventory(items.getTabItem(x, y).getItem(),items.getTabItem(x, y).getQuantity(),true));
+				updateInventoryView(superRoot,InView,joueur);
+				
+			}else {
+				pickItem(superRoot,InView,joueur,items.getTabItem(x, y));
+			}
+			
+			//joueur.pickItem(items.getTabItem(x, y));
 			// en attente de la MAJ de HUD
 			pick(coucheItem,items,x,y);
 			break;
@@ -378,9 +458,126 @@ public class App extends Application{
 	}
 	
 	
-	//public void end()
+	public void quit() {
+		Text text = new Text("Voulez vous quitter ?");
+		Button b1 = new Button("Oui");
+		Button b2 = new Button("Non");
+		
+		VBox vbox = new VBox();
+		Stage NewStage = new Stage();
+		Scene scene = new Scene(vbox,250,80);
+		GridPane gp1 = new GridPane();
+		GridPane gp2 = new GridPane();
+		
+		text.setStyle("-fx-font-weight: bold");
+		
+		
+		b1.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				Platform.exit();
+				System.exit(0);
+			}
+			
+		
+		});
+		b2.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				NewStage.close();
+			}
+			
+		
+		});
+		NewStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+		    @Override
+		    public void handle(WindowEvent event) {
+		        event.consume();
+		    }
+		});
+		
+		
+		gp1.add(text, 0, 0);
+		gp1.setAlignment(Pos.CENTER);
+		
+		gp2.add(b1, 0, 0);
+		gp2.add(b2, 1%2, 1/2);
+		gp2.setAlignment(Pos.CENTER);
+		gp2.setHgap(20);
+		
+		
+		vbox.getChildren().addAll(gp1,gp2);
+		vbox.setSpacing(20);
+		NewStage.setScene(scene);
+		NewStage.getIcons().add(new Image(getClass().getResourceAsStream("../images/player/player_down.png")));
+		NewStage.setTitle("Confirmation");
+		NewStage.setResizable(false);
+		NewStage.show();
+		//NewStage.requestFocus();
+		
+	}
+	public void win() {
+		Text text = new Text("Félicitation vous avez gagné, \nrelancez le jeu pour une nouvelle partie ");
+		Button b1 = new Button("OK");
+		
+		
+		VBox vbox = new VBox();
+		Stage NewStage = new Stage();
+		Scene scene = new Scene(vbox,250,80);
+		GridPane gp1 = new GridPane();
+		GridPane gp2 = new GridPane();
+		
+		text.setStyle("-fx-font-weight: bold");
+		text.setTextAlignment(TextAlignment.CENTER);
+		
+		b1.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				Platform.exit();
+				System.exit(0);
+			}
+		});
+		NewStage.setOnCloseRequest(new EventHandler<WindowEvent>() { // cancel closing
+		    @Override
+		    public void handle(WindowEvent event) {
+		        event.consume();
+		    }
+		});
+		
+		
+		gp1.add(text, 0, 0);
+		gp1.setAlignment(Pos.CENTER);
+		
+		gp2.add(b1, 0, 0);
+		gp2.setAlignment(Pos.CENTER);
+		gp2.setHgap(20);
+		
+		
+		vbox.getChildren().addAll(gp1,gp2);
+		vbox.setSpacing(20);
+		NewStage.setScene(scene);
+		NewStage.getIcons().add(new Image(getClass().getResourceAsStream("../images/player/player_down.png")));
+		NewStage.setTitle("Bravo");
+		NewStage.setResizable(false);
+		NewStage.show();
+	}
 	
-	 
+	
+	public void pickItem(StackPane superRoot,InventoryView InView,Player joueur,DroppedItem droppedItem) {
+		joueur.pickItem(droppedItem);
+		updateInventoryView(superRoot,InView,joueur);
+	}
+	
+	
+	public void updateInventoryView(StackPane superRoot,InventoryView InView,Player joueur) {
+		superRoot.getChildren().remove(getCoucheInventory());
+		InView.updateInventoryView(joueur.getInventory());
+		setCoucheInventory(InView.getInventoryVbox());
+		superRoot.getChildren().add(getCoucheInventory());
+	}
 	public static void main(String[] args) {
 		launch(args);
 	}

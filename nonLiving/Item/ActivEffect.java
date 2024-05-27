@@ -5,6 +5,12 @@ public enum ActivEffect {
 	MEDIUM_HEAL(30),
 	BIG_HEAL(40),
 	
+	DisplayNPCInventory(0),
+	Steal(1),
+	Teleport(0),
+	AbsorbLife(100),
+	HappyEnd(0),
+	
 	
 	NONE(0);
 	

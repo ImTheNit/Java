@@ -90,6 +90,7 @@ public class InventoryView {
 		
 		//Inventory
 		gpInv.setAlignment(Pos.BOTTOM_CENTER);
+		//System.out.println("Taille1 "+invent.getSize());
 		for(int i=0;i<invent.getSize();i++) {
 			SlotInventory sI = invent.getItem(i);
 			InventorySlotView sv =new InventorySlotView(sI,invent.getItem(i).getItem().getItemEnum().getType());
@@ -174,7 +175,7 @@ public class InventoryView {
 		
 	}
 	private void handleSlotClick(Inventory invent, SlotInventory slot,int slotPosition) {
-		System.out.println("TEST");
+		//System.out.println("TEST");
 		if (slot.isEmpty() && !hand.isEmpty()) {
 			System.out.println("TEST1");
 			//From Hand to slot
@@ -183,24 +184,24 @@ public class InventoryView {
 			slot.setIsFull(hand.getIsFull());
 			
 		}else if (!slot.isEmpty() && hand.isEmpty()){
-			System.out.println("TEST2");
+			//System.out.println("TEST2");
 			//From slot to Hand
 			hand.setItem(slot.getItem());
 			hand.setQuantity(slot.getQuantity());
 			hand.setIsFull(slot.getIsFull());
 			
 		}else if (!slot.isEmpty() && !hand.isEmpty()) {
-			System.out.println("TEST3");
+			//System.out.println("TEST3");
 			//Both not empty
 			
 			if (slot.getItem().getId() == hand.getItem().getId()) {		// a verifier, utiliser les itemEnum si l'id ne marche pas
-				System.out.println("TEST4");
+				//System.out.println("TEST4");
 				//Same item
 				int toMove = Math.min(slot.getItem().getItemEnum().getStackMax()-slot.getQuantity(), hand.getQuantity());
 				invent.add(slot.getItem(), slotPosition, toMove);
 				
 			}else {
-				System.out.println("TEST5");
+				//System.out.println("TEST5");
 				//Swap
 				SlotInventory tmp = slot;
 				
@@ -215,12 +216,12 @@ public class InventoryView {
 				
 				
 			}
-			System.out.println("TEST6");
+			//System.out.println("TEST6");
 		}/*
 		if (!hand.isEmpty() && handItemSlot)
 		*/
 		
-		System.out.println("test de fin ");
+		//System.out.println("test de fin ");
 	}
 	
 	

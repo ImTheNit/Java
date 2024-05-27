@@ -106,7 +106,7 @@ public class ItemCreator {
 		//FileReader file = new FileReader(FileName);
 		//InputStreamReader file = new InputStreamReader(getClass().getResourceAsStream(FileName));
 		System.out.println("../"+FileName);
-		System.out.println("test"+getClass().getResourceAsStream("../"+FileName));
+		//System.out.println("test"+getClass().getResourceAsStream("../"+FileName));
 		BufferedReader Br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("../"+FileName)));
 		String Line;
 		
@@ -116,7 +116,7 @@ public class ItemCreator {
 			System.out.println("Reading Line "+i+":"+Line);
 
 			String[] split =Line.split("\t");//depending on the data format
-			System.out.println("length : "+split.length);
+			//System.out.println("length : "+split.length);
 			for (int j = 0;j<split.length;j++) {//TODO améliorable pour ne prendre que 30 colonnes
 
 				if(split[j].equals("Tree1Day")) {
@@ -161,7 +161,7 @@ public class ItemCreator {
 					
 					StackPane sp = new StackPane();
 					Image image;//= new Image("images/background/entities/Tree1.png");//tmp
-					System.out.println(getTabItem(i,j).getItem());
+					//System.out.println(getTabItem(i,j).getItem());
 					//System.out.println("EXAMPLE"+getItem(i,j).equals("Tree1Day"));
 					//System.out.println("EXAMPLE"+getItem(i,j));
 					if (getItem(i,j).equals("Tree1Day")) {

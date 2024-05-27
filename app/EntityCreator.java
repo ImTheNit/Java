@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 
 import elmt_Base.Direction;
 import nonLiving.*;
+import nonLiving.Item.DroppedItem;
+import nonLiving.Item.Item;
+import nonLiving.Item.ItemEnum;
 import living.*;
 import living.Sprites.*;
 
@@ -130,8 +133,8 @@ public class EntityCreator {
 						MonsterType m = MonsterType.valueOf(split[j]);
 						
 						Monster nlet = new Monster(i,j,0,Direction.Up,m.getLevel(),m.getXp(),m.getXpMax(),m.getLife(),m.getAtk(),m.getDef(),m.name(),m);
-						System.out.println("test"+nlet.getClass());
-						System.out.println("test"+nle.getClass());
+						//System.out.println("test"+nlet.getClass());
+						//System.out.println("test"+nle.getClass());
 						nle = (Entity)nlet.clone();
 						System.out.println("autre1 : "+((Monster) nle).getTypeMonster());
 						setTabEntity((Monster)nle,j,i);
@@ -147,7 +150,18 @@ public class EntityCreator {
 						
 						nle = new NPC(i,j,0,Direction.Up,m.getLevel(),m.getXp(),m.getXpMax(),m.getLife(),m.getAtk(),m.getDef(),m.name(),m);
 						System.out.println("autre1 : "+((NPC) nle).getTypeNPC());
-						setTabEntity((NPC)nle,j,i);
+						
+						Item item = new Item(9, "NORMAL_HELMET",ItemEnum.NORMAL_HELMET, 1,1);
+						DroppedItem di = new DroppedItem(0,0,0,Direction.Up, item, 1);
+						
+						Item item1 = new Item(9, "NORMAL_SWORD",ItemEnum.NORMAL_SWORD, 1,1);
+						DroppedItem di1 = new DroppedItem(0,0,0,Direction.Up, item1, 1);
+						
+						NPC npc = (NPC)nle;
+						npc.pickItem(di);
+						npc.pickItem(di1);
+						
+						setTabEntity(npc,j,i);
 					}catch(Exception e) {
 						System.out.println(e.getMessage());
 					}

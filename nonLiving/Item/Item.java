@@ -1,5 +1,6 @@
 package nonLiving.Item;
 
+import app.App;
 import living.LivingEntity;
 import nonLiving.Item.ItemEnum;
 
@@ -97,7 +98,7 @@ public class Item  {
 		}
 	}
 	
-	public void use(LivingEntity target) {
+	public void use(LivingEntity target,App app,LivingEntity user) {
 		switch(getItemEnum().getAeffect()) {
 		case NONE:
 			// no action
@@ -110,6 +111,18 @@ public class Item  {
 			break;
 		case BIG_HEAL:
 			//
+			break;
+			
+			
+			
+		case Teleport:
+			//app.ZQSD()
+			break;
+		case HappyEnd:
+			app.win();
+			break;
+		case AbsorbLife:
+			
 			break;
 		default:
 			System.out.println("Unkown Activ Effect");
@@ -325,11 +338,11 @@ public class Item  {
 	
 	@Override
 	public String toString() {
-		String ret = "\nid:"+getId();
-		ret += "\nname : "+getName();
-		ret += "\nitemEnum : "+getItemEnum().toString();
-		ret += "\ndurability : "+getDurability();
-		ret += "\ndurabilityMax : "+getDurabilityMax();
+		String ret ;//= "\nid:"+getId();
+		ret = "\nname : "+getName();
+		//ret += "\nitemEnum : "+getItemEnum().toString();
+		//ret += "\ndurability : "+getDurability();
+		//ret += "\ndurabilityMax : "+getDurabilityMax();
 		return ret;				
 	}
 	

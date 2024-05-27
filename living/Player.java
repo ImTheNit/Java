@@ -24,6 +24,7 @@ public class Player extends LivingEntity{
 	private ArrayList<Quest> ListQuest;
 	private static final String texture = "player";
 	public Point2D oldPosition;
+	private ArrayList<NPC> ListNPC;
 	
 	/*
 	 * constructor
@@ -31,12 +32,14 @@ public class Player extends LivingEntity{
 	public Player(int x, int y, double weight,Direction Facing,int level,int xp,int xpmax,double life, double atk,double def,String name) {
 		super(x, y, weight, Facing,EnumEntity.None,level,xp,xpmax,life,atk,def,name);
 		setOldPosition(new Point2D(0,0));
+		ListNPC = new ArrayList<NPC>();
 		// TODO Auto-generated constructor stub
 	}
 
 	public Player(int x, int y, double weight,Direction Facing,double life, double atk,double def,String name) { // constructor light
 		super(x,y,weight,Facing,EnumEntity.None,life,atk,def,name);
 		setOldPosition(new Point2D(0,0));
+		ListNPC = new ArrayList<NPC>();
 	}
 	
 	
@@ -63,6 +66,13 @@ public class Player extends LivingEntity{
 	public Point2D getOldPosition() {
 		return oldPosition;
 	}
+	public ArrayList<NPC> getListNPC(){
+		return ListNPC;
+	}
+	public NPC getListNPC(int index){
+		return ListNPC.get(index);
+	}
+	
 	
 	/*
 	 * setter
@@ -82,6 +92,13 @@ public class Player extends LivingEntity{
 	public void setOldPosition(Point2D p) {
 		Point2D p2 = new Point2D(p.getAbscisse(),p.getOrdonnee());
 		oldPosition =p2;
+	}
+	public void setListNPC(ArrayList <NPC> listNPC) {
+		ListNPC = listNPC;
+	}
+	public void setListNPC( NPC NPC,int index) {
+		ListNPC.set(index, NPC);
+		
 	}
 	
 	
@@ -111,7 +128,9 @@ public class Player extends LivingEntity{
 			System.out.println("Already full of quests");
 		}
 	}
-	
+	public void addNPC(NPC npc) {
+		ListNPC.add(npc);
+	}
 	
 	/*
 	 * @return the round where the fight 

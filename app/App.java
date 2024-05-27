@@ -10,10 +10,14 @@ import javafx.stage.*;
 import living.*;
 import nonLiving.EnumEntity;
 import nonLiving.SlotInventory;
+import nonLiving.Item.ActivEffect;
 import nonLiving.Item.DroppedItem;
 import nonLiving.Item.Item;
 import nonLiving.Item.ItemEnum;
 import nonLiving.Item.ItemGroup;
+
+import java.util.concurrent.ThreadLocalRandom;
+
 import app.inventory.*;
 
 import javafx.scene.*;
@@ -93,8 +97,32 @@ public class App extends Application{
 		}
 		*/
 		Player joueur = new Player(10, 10, 1, Direction.Up, 100, 10, 10, "Joueur1");
-		Item item = new Item(9, "NORMAL_HELMET",ItemEnum.NORMAL_HELMET, 1,1);
+		
+
+		joueur.getInventory().setSize(5);
+
+		
+		Item item = new Item(9, "SMALL_RED_POTION",ItemEnum.SMALL_RED_POTION, 1,1);
 		DroppedItem di = new DroppedItem(0,0,0,Direction.Up, item, 1);
+		
+		Item item1 = new Item(9, "MEDIUM_RED_POTION",ItemEnum.MEDIUM_RED_POTION, 1,1);
+		DroppedItem di1 = new DroppedItem(0,0,0,Direction.Up, item1, 1);
+		
+		Item item2 = new Item(9, "BIG_RED_POTION",ItemEnum.BIG_RED_POTION, 1,1);
+		DroppedItem di2 = new DroppedItem(0,0,0,Direction.Up, item2, 1);
+		
+		Item item3 = new Item(9, "SMALL_BLUE_POTION",ItemEnum.SMALL_BLUE_POTION, 1,1);
+		DroppedItem di3 = new DroppedItem(0,0,0,Direction.Up, item3, 1);
+		
+		Item item4 = new Item(9, "MEDIUM_BLUE_POTION",ItemEnum.MEDIUM_BLUE_POTION, 1,1);
+		DroppedItem di4 = new DroppedItem(0,0,0,Direction.Up, item4, 1);
+		
+		joueur.pickItem(di);
+		joueur.pickItem(di1);
+		joueur.pickItem(di2);
+		joueur.pickItem(di3);
+		joueur.pickItem(di4);
+		
 		
 		//joueur.pickItem(di);
 		StackPane superRoot = new StackPane();
@@ -117,7 +145,7 @@ public class App extends Application{
 		
 		setPlayerView(joueur);
 		//joueur.getInventory().decreaseSize(5);
-		System.out.println("test2 :"+joueur.getInventory().getSize());
+		
 		addComponent(coucheMap,map,10,10,loadImage(joueur));
 		
 		//System.out.println("TEST5");
@@ -134,7 +162,7 @@ public class App extends Application{
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("../images/player/player_down.png")));
 		stage.setTitle("Level One");
 		stage.show();
-		System.out.println("TEST");
+		
 		stage.requestFocus();
 		stage.setResizable(false);
 		
@@ -211,6 +239,8 @@ public class App extends Application{
 				
 				break;
 			
+				
+			
 
 			case ESCAPE:
 				//System.out.println(event.getCode());
@@ -218,9 +248,67 @@ public class App extends Application{
 				quit();
 				
 				break;
-			case P:
-				win();
+				
+				
+			case  H : //history
+				System.out.println("history");
+				for (int i=0;i<joueur.getInventory().getSize();i++) {
+					if(joueur.getInventory().getContent(i).getItem().getItemEnum().getAeffect()==ActivEffect.DisplayNPCInventory) {
+						System.out.println("Item possédé\n\n");
+						for(int j =0;j<joueur.getListNPC().size();j++) {
+							System.out.println("NPC "+(j+1)+"\n"+joueur.getListNPC(j).getInventory() +"\n\n");
+						}
+						try {
+							DroppedItem dpi = joueur.dropItem(i,1);
+						} catch (CloneNotSupportedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						updateInventoryView( superRoot, InView, joueur);
+					}
+				}
 				break;
+				
+				
+			case T://teleport
+				System.out.println("teleport");
+				for (int i=0;i<joueur.getInventory().getSize();i++) {
+					if(joueur.getInventory().getContent(i).getItem().getItemEnum().getAeffect()==ActivEffect.Teleport) {
+						System.out.println("Item possédé");
+						int randomNum1 = ThreadLocalRandom.current().nextInt( 0, getDimX());
+						int randomNum2 = ThreadLocalRandom.current().nextInt( 0, getDimY());
+						mouvementZQSD(stage,superRoot,Direction.Up, map,  entities, items, InView, coucheMap, coucheEntite, coucheItem, joueur, imv, randomNum1, randomNum2);
+						
+					}
+				}
+
+				break;
+				
+				
+			case F://Finish
+				System.out.println("Finish");
+				for (int i=0;i<joueur.getInventory().getSize();i++) {
+					if(joueur.getInventory().getContent(i).getItem().getItemEnum().getAeffect()==ActivEffect.HappyEnd) {
+						System.out.println("Item possédé");
+						win();
+						
+					}
+				}
+				break;
+			
+				
+			case V://Vampirism
+				System.out.println("Vampirism");
+				for (int i=0;i<joueur.getInventory().getSize();i++) {
+					if(joueur.getInventory().getContent(i).getItem().getItemEnum().getAeffect()==ActivEffect.AbsorbLife) {
+						System.out.println("Item possédé");
+						vampirise(joueur,coucheEntite,entities,items);
+					}
+				}
+				
+				
+				break;
+				
 			case O:
 				
 				//System.out.println(joueur.getInventory());
@@ -229,13 +317,13 @@ public class App extends Application{
 				
 				break;
 			case U:
-				Item item2 = new Item(10, "NORMAL_HELMET",ItemEnum.NORMAL_HELMET, 1,1);
+				/*Item item2 = new Item(10, "NORMAL_HELMET",ItemEnum.NORMAL_HELMET, 1,1);
 				DroppedItem di2 = new DroppedItem(0,0,0,Direction.Up, item2, 1);
 				
-				pickItem(superRoot,InView,joueur,di2);
+				pickItem(superRoot,InView,joueur,di2);*/
 				break;
 			case K:
-				
+				System.out.println(joueur.getInventory());
 				break;
 
 			default:
@@ -365,7 +453,7 @@ public class App extends Application{
 		switch (actionable(x,y,entities,items)) {
 		
 		case 1 : //NPC
-			Tooltip ttip =new Tooltip();
+			/*Tooltip ttip =new Tooltip();
 			ttip.setText("je suis un PNJ");
 			ttip.setFont(Font.font("Arial", FontPosture.ITALIC, 15));
 			
@@ -380,7 +468,11 @@ public class App extends Application{
 			
 			
 			r.getChildren().add(l);
-			superRoot.getChildren().add(r);
+			superRoot.getChildren().add(r);*/
+			NPC target = ((NPC)entities.getTabEntity(x,y));
+			joueur.addNPC(target);
+			System.out.println("Hello i'm a NPC and here is my inventory :\n"+target.getInventory());
+			
 			break;
 			
 		case 2: //Monster
@@ -413,7 +505,11 @@ public class App extends Application{
 				updateInventoryView(superRoot,InView,joueur);
 				
 			}else {
-				pickItem(superRoot,InView,joueur,items.getTabItem(x, y));
+				//if (joueur.getInventory().) // TODO test full
+				if (!joueur.getInventory().isFull()) {
+					pickItem(superRoot,InView,joueur,items.getTabItem(x, y));
+				}
+				
 			}
 			
 			//joueur.pickItem(items.getTabItem(x, y));
@@ -593,7 +689,48 @@ public class App extends Application{
 		launch(args);
 	}
 	
-	
+	public void vampirise(Player joueur,GridPane coucheEntite,EntityCreator e,ItemCreator i) {
+		int X=0;
+		int Y=0;
+		int X1 = joueur.getPosition().getAbscisse();
+		int Y1 = joueur.getPosition().getOrdonnee();
+		
+		switch(joueur.getFacing()) {
+		
+			case Up:
+				//x, y-1
+				X = X1 ;
+				Y = Y1-1;
+				break;
+				
+			case Down:
+				//x2,y2+1
+				X = X1 ;
+				Y = Y1+1;
+				break;
+				
+			case Left:
+				//x1-1, y1
+				X = X1 -1 ;
+				Y = Y1;
+				break;
+				
+			case Right:
+				X = X1+1 ;
+				Y = Y1;
+				break;
+				
+			default:
+				System.out.println("Wrong facing of the player");
+				break;
+		}
+		 if (actionable(X, Y, e,i) == 2) { // facing a monster
+			 joueur.increaseLife(((Monster)e.getTabEntity(X,Y)).getLife());
+			 kill(coucheEntite,e,X,Y);
+		 }
+		
+		
+	}
 	
 
 }

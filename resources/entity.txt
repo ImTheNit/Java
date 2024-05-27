@@ -8,7 +8,7 @@ Tree1Day		Tree1Day								Tree1Day				Tree1Day															Tree1Day
 Tree1Day						Zombie		Zombie									Knight												Tree1Day
 Tree1Day																													Tree1Day
 Tree1Day			Tree1Day									Zombie																	Tree1Day
-Tree1Day								Tree1Day						Knight															Tree1Day
+Tree1Day								Tree1Day	Jean		Jean			Knight															Tree1Day
 Tree1Day																	Tree1Day												Tree1Day
 Tree1Day						Tree1Day																		Tree1Day					Tree1Day
 Tree1Day																													Tree1Day

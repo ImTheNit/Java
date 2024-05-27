@@ -76,7 +76,7 @@ public class SlotInventory implements Cloneable{
 		if (getItem()!=null) {
 			String ret = "\nItem : "+getItem().toString();
 			ret += "\n\nQuantity : "+getQuantity();
-			ret += "\nisFull : "+getIsFull()+"\n";
+			//ret += "\nisFull : "+getIsFull()+"\n";
 			return ret;
 		}
 		return null;

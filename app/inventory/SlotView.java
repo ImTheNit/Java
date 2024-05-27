@@ -27,13 +27,13 @@ public class SlotView extends StackPane implements GameEventHandler<SlotInventor
 		img = new ImageView();
 		img.setFitHeight(48);
 		img.setFitWidth(48);
-		System.out.println(slot);
-		System.out.println("test :\n"+getRefPathItem()+slot.getItem().getItemEnum().getTexture()+".png");
-		System.out.println("test :\n"+slot.getItem().getItemEnum());
+		//System.out.println(slot);
+		//System.out.println("test :\n"+getRefPathItem()+slot.getItem().getItemEnum().getTexture()+".png");
+		//System.out.println("test :\n"+slot.getItem().getItemEnum());
 		
-		System.out.println(getRefPathItem()+ItemEnum.EMPTY.getTexture()+".png");
+		//System.out.println(getRefPathItem()+ItemEnum.EMPTY.getTexture()+".png");
 		if (slot.getItem().getItemEnum() != ItemEnum.EMPTY) {
-			System.out.println("testhelmet\n"+getRefPathItem()+slot.getItem().getItemEnum().getTexture()+".png");
+			//System.out.println("testhelmet\n"+getRefPathItem()+slot.getItem().getItemEnum().getTexture()+".png");
 			img.setImage(new Image(getClass().getResourceAsStream(getRefPathItem()+slot.getItem().getItemEnum().getTexture()+".png")));
 			
 		}
@@ -41,7 +41,7 @@ public class SlotView extends StackPane implements GameEventHandler<SlotInventor
 			
 			switch(TYPE) {
 			case HELMET:
-				System.out.println("testhelmet");
+				//System.out.println("testhelmet");
 				img.setImage(new Image(getClass().getResourceAsStream(getRefPathSlotArm()+"HelmetSlot.png")));
 				break;
 			case CHEST:
@@ -67,8 +67,8 @@ public class SlotView extends StackPane implements GameEventHandler<SlotInventor
 				
 			}
 		}	
-		System.out.println("TEST4");
-		System.out.println("test");
+		//System.out.println("TEST4");
+		//System.out.println("test");
 		HBox labelPane = new HBox();
 		labelPane.setAlignment(Pos.BOTTOM_RIGHT);
 		
@@ -79,15 +79,15 @@ public class SlotView extends StackPane implements GameEventHandler<SlotInventor
 		labelPane.getChildren().add(label);
 		
 		getChildren().addAll(img, labelPane);
-		System.out.println("TEST9");
+		//System.out.println("TEST9");
 		slot.addEventHandler(this);
 		slot.addEventHandler((oldSlot, newSlot) -> {
-			System.out.println("TEST10");
+			//System.out.println("TEST10");
             if (newSlot.getItem().getItemEnum() != ItemEnum.EMPTY) {
-            	System.out.println("TEST11");
+            	//System.out.println("TEST11");
             	img.setImage(new Image(getClass().getResourceAsStream(getRefPathItem()+newSlot.getItem().getItemEnum().getTexture()+".png"))); //TODO
             }else {
-            	System.out.println("TEST12");
+            	//System.out.println("TEST12");
             	img.setImage(new Image(getClass().getResourceAsStream(getRefPathItem()+ItemEnum.EMPTY.getTexture()+".png")));
             
             setQuantity(newSlot.getQuantity());}

@@ -20,6 +20,7 @@ public class Inventory {
 	 */
 	public Inventory(int size) {
 		setBaseSize(size);
+		setSize(getBaseSize());
 		setInventory();
 		initArmorInventory();
 		//setHand(new SlotInventory());
@@ -32,7 +33,8 @@ public class Inventory {
 	 * getter
 	 */
 	public int getSize() {
-		return getContent().size();
+		return size;
+		//return getContent().size();
 	}
 	public int getBaseSize() {
 		return baseSize;
@@ -266,7 +268,16 @@ public class Inventory {
 		}
 		
 	}
-	
+	public boolean isFull() {
+		boolean b = false;
+		for (int i=0;i< getContent().size();i++) {
+			if (getContent(i).isEmpty()) {
+				b = true;
+				return b;
+			}
+		}
+		return b;
+	}
 	@Override
 	public String toString() {
 		String ret1 = "\nInventory :";

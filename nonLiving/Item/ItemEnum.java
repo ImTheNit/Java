@@ -51,8 +51,20 @@ public enum ItemEnum {
 	
 	SMALL_LIFE_POTION("small life potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.SMALL_HEAL,5,"SmallGreenPotion"),
 	MEDIUM_LIFE_POTION("medium life potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.MEDIUM_HEAL,5,"MediumGreenPotion"),
-	BIG_LIFE_POTION("big life potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.BIG_HEAL,5,"BigGreenPotion")
+	BIG_LIFE_POTION("big life potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.BIG_HEAL,5,"BigGreenPotion"),
 	
+	//item1
+	SMALL_RED_POTION("small red potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.DisplayNPCInventory,5,"SmallRedPotion"),
+	//item2
+	MEDIUM_RED_POTION("medium red potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.Steal,5,"MediumRedPotion"),
+	//item3
+	BIG_RED_POTION("big red potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.Teleport,5,"BigRedPotion"),
+	
+	//item4
+	SMALL_BLUE_POTION("small blue potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.AbsorbLife,5,"SmallBluePotion"),
+	//item5
+	MEDIUM_BLUE_POTION("medium blue potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.HappyEnd,5,"MediumBluePotion"),
+	//BIG_BLUE_POTION("big blue potion",ItemType.LIFE_POTION,PassivEffect.NONE,ActivEffect.BIG_HEAL,5,"BigBluePotion"),
 	
 	// A COMPLETER 
 	;

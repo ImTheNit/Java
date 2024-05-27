@@ -508,13 +508,14 @@ public class App extends Application{
 				//if (joueur.getInventory().) // TODO test full
 				if (!joueur.getInventory().isFull()) {
 					pickItem(superRoot,InView,joueur,items.getTabItem(x, y));
+					pick(coucheItem,items,x,y);
 				}
 				
 			}
 			
 			//joueur.pickItem(items.getTabItem(x, y));
 			// en attente de la MAJ de HUD
-			pick(coucheItem,items,x,y);
+			//pick(coucheItem,items,x,y);
 			break;
 			
 		default:
